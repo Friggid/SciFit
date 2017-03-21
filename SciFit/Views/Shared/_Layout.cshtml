@@ -24,8 +24,9 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li>@Html.ActionLink("Login", "Login", "Authentication")</li>
+                    <li>@Html.ActionLink("Register", "Register", "Authentication")</li>
+                        @RenderSection("styles", false)
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
