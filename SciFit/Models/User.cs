@@ -13,6 +13,7 @@ namespace SciFit.Models
         public string Email { get; set; }
         public string Age { get; set; }
         public string Weight { get; set; }
+        public string Height { get; set; }
         public string Difficulty { get; set; }
     }
 }
