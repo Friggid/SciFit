@@ -27,5 +27,10 @@ namespace SciFit.Controllers
 
             return View();
         }
+
+        public ActionResult Program()
+        {
+            return View();
+        }
     }
 }

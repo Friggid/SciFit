@@ -17,5 +17,14 @@ namespace SciFit.Controllers
             return View();
         }
 
+        public ActionResult RegisterUser(User user)
+        {
+            return View("RegisterUserPartial", user);
+        }
+
+        public ActionResult GetUserData(User user)
+        {
+            return View("Login");
+        }
     }
 }

@@ -1,5 +1,34 @@
-﻿@{
+﻿@model SciFit.Models.User
+@{
     ViewBag.Title = "Register";
 }
 
-<h2>rerer</h2>
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/Authentication.css")" />
+    <link rel="Stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+}
+<!--Pulling Awesome Font -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-registration">
+                @using (Html.BeginForm("RegisterUser", "Authentication"))
+                {
+                    <h4>Registration</h4>
+                    <input type="text" id="userName" name="UserName" class="form-control input-sm chat-input" placeholder="username"/>
+                    <br>
+                    <input type="text" id="userPassword" name="Password" class="form-control input-sm chat-input" placeholder="password"/>
+                    <br>
+                    <input type="text" id="email" name="Email" class="form-control input-sm chat-input" placeholder="user@mail.com"/>
+                    <br>
+                    <div class="wrapper">
+                        <span class="group-btn">
+                            <button type="submit" value="Submit">Submit</button>
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
