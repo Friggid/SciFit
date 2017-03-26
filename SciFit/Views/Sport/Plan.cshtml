@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SciFit.Models.SportNutritionPlanModel
+@{
     ViewBag.Title = "Sport";
 }
 @section styles{
@@ -39,86 +40,38 @@
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab1">
                         <div class="row">
-                            <div class="col-sm-6 col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    @* Model.ImageSrc *@
-                                    <img src="https://cdn2.iconfinder.com/data/icons/yoga-pose/512/yoga-09-512.png" alt="..." style="height: 200px; width: 200px">
-                                    <div class="caption">
-                                        <h3>Model.Name - Sport 1</h3>
-                                        <p>Model.Description</p>
-                                        <p>Model.Reps</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Done</a>
+                            @foreach (var item in Model.SportPlan)
+                            {
+                                <div class="col-sm-6 col-md-4" style="text-align: center">
+                                    <div class="thumbnail">
+                                        <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                        <div class="caption">
+                                            <h3>@item.Name</h3>
+                                            <p>@item.Instructions</p>
+                                            <p>@item.Reps</p>
+                                            <p><a href="#" class="btn btn-primary" role="button">Done</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6 col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    @* Model.ImageSrc *@
-                                    <img src="https://cdn2.iconfinder.com/data/icons/yoga-pose/512/yoga-13-512.png" alt="..." style="height: 200px; width: 200px">
-                                    <div class="caption">
-                                        <h3>Model.Name - Sport 2</h3>
-                                        <p>Model.Description</p>
-                                        <p>Model.Reps</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Done</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    @* Model.ImageSrc *@
-                                    <img src="https://cdn2.iconfinder.com/data/icons/yoga-pose/512/yoga-18-512.png" alt="..." style="height: 200px; width: 200px">
-                                    <div class="caption">
-                                        <h3>Model.Name - Sport 3</h3>
-                                        <p>Model.Description</p>
-                                        <p>Model.Reps</p>
-                                        <p><a href="#" class="btn btn-primary" role="button">Done</a>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                     <div class="tab-pane fade in" id="tab2">
                         <div class="row">
-                            <div class="col-sm-6 col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    @* Model.ImageSrc *@
-                                    <img src="http://www.pngall.com/wp-content/uploads/2016/04/Banana-PNG-Picture.png" alt="..." style="height: 200px; width: 200px">
-                                    <div class="caption">
-                                        <h3>Model.Name - Banana</h3>
-                                        <p>Model.Description</p>
-                                        <p>Model.Calories</p>
-                                        <p>Model.Weight</p>
-                                        <p>Model.Price</p>
+                            @foreach (var item in @Model.NutritionPlan)
+                            {
+                                <div class="col-sm-6 col-md-4" style="text-align: center">
+                                    <div class="thumbnail">
+                                        <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                        <div class="caption">
+                                            <h3>@item.Name</h3>
+                                            <p>@item.Calories kCal</p>
+                                            <p>@item.Weight</p>
+                                            <p>@item.Price</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6 col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    @* Model.ImageSrc *@
-                                    <img src="http://www.pngmart.com/files/1/Orange-PNG-Transparent-Image.png" alt="..." style="height: 200px; width: 200px">
-                                    <div class="caption">
-                                        <h3>Model.Name - Orange</h3>
-                                        <p>Model.Description</p>
-                                        <p>Model.Calories</p>
-                                        <p>Model.Weight</p>
-                                        <p>Model.Price</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    @* Model.ImageSrc *@
-                                    <img src="http://pngimg.com/uploads/potato/potato_PNG7082.png" alt="..." style="height: 200px; width: 200px">
-                                    <div class="caption">
-                                        <h3>Model.Name - Potatoes</h3>
-                                        <p>Model.Description</p>
-                                        <p>Model.Calories</p>
-                                        <p>Model.Weight</p>
-                                        <p>Model.Price</p>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
