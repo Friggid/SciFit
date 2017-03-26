@@ -157,6 +157,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\GeneratePlan.cs" />
+    <Compile Include="Models\NutritionPlanModel.cs" />
+    <Compile Include="Models\SportNutritionPlanModel.cs" />
+    <Compile Include="Models\SportPlanModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
