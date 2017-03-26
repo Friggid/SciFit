@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Sport";
+}
+@section styles{
+    <link rel="Stylesheet" href="@Href("~/Content/Plan.css")" />
+}
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/plan.js")"></script>
+}
+<div class="container">
+    <div class="center-block">
+        <div class="col-lg-12 col-sm-12">
+            <div class="card hovercard">
+                <div class="card-background">
+                    <img class="card-bkimg" alt="" src="http://codegena.com/wp-content/uploads/2015/10/Background-Pattern-3.png">
+                </div>
+                <div class="useravatar">
+                    <img alt="" src="https://www.vexels.com/media/users/3/141735/isolated/preview/f1e0f649e711910f0ef8b84742160df7-sporty-joyfull-man-by-vexels.png">
+                </div>
+                <div class="card-info">
+                    <span class="card-title">Test User</span>
+                </div>
+            </div>
+            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button style="min-height: 5em" type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab">
+                        <span class="glyphicon glyphicon-scale" aria-hidden="true"></span>
+                        <div style="font-size: 2em"> Sport</div>
+                    </button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button style="min-height: 5em" type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab">
+                        <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                        <div style="font-size: 2em"> Eat</div>
+                    </button>
+                </div>
+            </div>
+            <div class="well">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4" style="text-align: center">
+                                <div class="thumbnail">
+                                    @* Model.ImageSrc *@
+                                    <img src="https://cdn2.iconfinder.com/data/icons/yoga-pose/512/yoga-09-512.png" alt="..." style="height: 200px; width: 200px">
+                                    <div class="caption">
+                                        <h3>Model.Name - Sport 1</h3>
+                                        <p>Model.Description</p>
+                                        <p>Model.Reps</p>
+                                        <p><a href="#" class="btn btn-primary" role="button">Done</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4" style="text-align: center">
+                                <div class="thumbnail">
+                                    @* Model.ImageSrc *@
+                                    <img src="https://cdn2.iconfinder.com/data/icons/yoga-pose/512/yoga-13-512.png" alt="..." style="height: 200px; width: 200px">
+                                    <div class="caption">
+                                        <h3>Model.Name - Sport 2</h3>
+                                        <p>Model.Description</p>
+                                        <p>Model.Reps</p>
+                                        <p><a href="#" class="btn btn-primary" role="button">Done</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4" style="text-align: center">
+                                <div class="thumbnail">
+                                    @* Model.ImageSrc *@
+                                    <img src="https://cdn2.iconfinder.com/data/icons/yoga-pose/512/yoga-18-512.png" alt="..." style="height: 200px; width: 200px">
+                                    <div class="caption">
+                                        <h3>Model.Name - Sport 3</h3>
+                                        <p>Model.Description</p>
+                                        <p>Model.Reps</p>
+                                        <p><a href="#" class="btn btn-primary" role="button">Done</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade in" id="tab2">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4" style="text-align: center">
+                                <div class="thumbnail">
+                                    @* Model.ImageSrc *@
+                                    <img src="http://www.pngall.com/wp-content/uploads/2016/04/Banana-PNG-Picture.png" alt="..." style="height: 200px; width: 200px">
+                                    <div class="caption">
+                                        <h3>Model.Name - Banana</h3>
+                                        <p>Model.Description</p>
+                                        <p>Model.Calories</p>
+                                        <p>Model.Weight</p>
+                                        <p>Model.Price</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4" style="text-align: center">
+                                <div class="thumbnail">
+                                    @* Model.ImageSrc *@
+                                    <img src="http://www.pngmart.com/files/1/Orange-PNG-Transparent-Image.png" alt="..." style="height: 200px; width: 200px">
+                                    <div class="caption">
+                                        <h3>Model.Name - Orange</h3>
+                                        <p>Model.Description</p>
+                                        <p>Model.Calories</p>
+                                        <p>Model.Weight</p>
+                                        <p>Model.Price</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4" style="text-align: center">
+                                <div class="thumbnail">
+                                    @* Model.ImageSrc *@
+                                    <img src="http://pngimg.com/uploads/potato/potato_PNG7082.png" alt="..." style="height: 200px; width: 200px">
+                                    <div class="caption">
+                                        <h3>Model.Name - Potatoes</h3>
+                                        <p>Model.Description</p>
+                                        <p>Model.Calories</p>
+                                        <p>Model.Weight</p>
+                                        <p>Model.Price</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

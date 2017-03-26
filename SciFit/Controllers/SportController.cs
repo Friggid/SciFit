@@ -7,11 +7,7 @@ namespace SciFit.Controllers
     {
         public ActionResult SportPlan(User user)
         {
-            //TODO username ir pass patikrinimas
-            //if(ok) aiti i  View("SportPlanPartial")
-            //else View("Login")
-
-            return View("SportPlanPartial");
+            return View("Plan");
         }
     }
 }
