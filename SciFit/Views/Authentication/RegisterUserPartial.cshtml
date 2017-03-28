@@ -4,42 +4,47 @@
 }
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-5 col-md-3">
+        <div class="col-sm-6 col-sm-offset-3 text-center" style="float: none; margin: auto">
             @using (Html.BeginForm("SportPlan", "Sport"))
-            { 
+            {
+                <h4>Registration</h4>
+                <hr />
                 <div class="form-group">
                     <label for="Age">Age</label>
-                    <select class="form-control" id="Age" name="Age">
+                    <select class="form-control" id="Age" name="Age" style="margin: auto">
                         @*
-                            &lt; - <
-                            &gt; - >
+                        &lt; - <
+                        &gt; - >
                         *@
                         <option>&lt;18</option>
                         <option>19 - 25</option>
                         <option>&gt;25</option>
                     </select>
                 </div>
+                <hr/>
                 <div class="form-group">
                     <label for="Weight">Weight</label>
-                    <select class="form-control" id="Weight" name="Weight">
+                    <select class="form-control" id="Weight" name="Weight" style="margin: auto">
                         <option>&lt;60</option>
                         <option>60 - 80</option>
                         <option>80 - 100</option>
                         <option>&gt;100</option>
                     </select>
                 </div>
+                <hr />
                 <div class="form-group">
                     <label for="Height">Height</label>
-                    <select class="form-control" id="Height" name="Height">
+                    <select class="form-control" id="Height" name="Height" style="margin: auto">
                         <option>&lt;160cm</option>
                         <option>160 - 180cm</option>
                         <option>180 - 200cm</option>
                         <option>&gt;200cm</option>
                     </select>
                 </div>
+                <hr />
                 <div class="form-group">
                     <label for="Difficulty">How much did you train before?</label>
-                    <select multiple class="form-control" id="Difficulty" name="Difficulty">
+                    <select multiple class="form-control" id="Difficulty" name="Difficulty" style="margin: auto">
                         <option>I did not train</option>
                         <option style="font-size: 0.1pt; background-color: gray; opacity: 0.2" disabled>&nbsp;</option>
                         <option>I trained a little</option>
@@ -49,9 +54,8 @@
                         <option>I trained a lot every week</option>
                     </select>
                 </div>
-                <div>
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </div>
+                <hr />
+                <button type="submit" class="btn btn-primary">Register</button>
             }
         </div>
     </div>
