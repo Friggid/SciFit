@@ -7,10 +7,10 @@ namespace SciFitApi.Models
 {
     public class UsersModel
     {
-        public UsersModel()
-        {
-            Plan = new List<PlanModel>();
-        }
+        //public UsersModel()
+        //{
+        //    Plan = new List<PlanModel>();
+        //}
 
         public int Id { get; set; }
 
@@ -25,9 +25,9 @@ namespace SciFitApi.Models
         public string Email { get; set; }
 
         //navigate
-        public virtual RolesModel Roles { get; set; }
+        //public virtual RolesModel Roles { get; set; }
 
-        public virtual ICollection<PlanModel> Plan { get; set; }
+        //public virtual ICollection<PlanModel> Plan { get; set; }
 
     }
 }
