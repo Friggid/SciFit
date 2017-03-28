@@ -13,14 +13,6 @@ namespace SciFit
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            // /Authentication
-
-            routes.MapRoute(
-                name: "Authentication",
-                url: "{name}",
-                defaults: new { controller = "Authentication", action = "Login", id = UrlParameter.Optional }
-            );
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

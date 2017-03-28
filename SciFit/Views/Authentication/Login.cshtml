@@ -3,25 +3,22 @@
 }
 
 @section styles{
-    <link rel="Stylesheet" href="@Href("~/Content/Authentication.css")" />
+    <link rel="Stylesheet" href="@Href("~/Content/Site.css")" />
     <link rel="Stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 }
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-5 col-md-3">
-            <div class="form-login">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="form-login text-center">
                 @using (Html.BeginForm("SportPlan", "Sport"))
                 {
                     <h4>Welcome back.</h4>
-                    <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username"/>
+                    <hr />
+                    <input type="text" id="userName" class="form-control input-sm" style="margin: auto" placeholder="username"/>
                     <br>
-                    <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password"/>
+                    <input type="text" id="userPassword" class="form-control input-sm" style="margin: auto" placeholder="password"/>
                     <br>
-                    <div class="wrapper">
-                        <span class="group-btn">
-                            <button type="submit" value="Submit">Submit</button>
-                        </span>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 }
             </div>
 
