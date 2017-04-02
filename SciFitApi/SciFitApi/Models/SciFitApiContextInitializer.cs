@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace SciFitApi.Models
 {
@@ -32,7 +29,13 @@ namespace SciFitApi.Models
                     Name = "Lukas",
                     Surname = "Ignatavicius",
                     Address = "Virsuliskes",
-                    Email = "lukas@gmail.com"
+                    Email = "lukas@gmail.com",
+                    UserName = "Lukas",
+                    Password = "admin",
+                    Age = "10",
+                    Weight = "10",
+                    Height = "10",
+                    Difficulty = "0"
                 }
             };
             users.ForEach(x => context.Users.Add(x));

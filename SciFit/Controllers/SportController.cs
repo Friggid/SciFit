@@ -6,17 +6,22 @@ namespace SciFit.Controllers
 {
     public class SportController : Controller
     {
-        public ActionResult SportPlan(User user)
+        public ActionResult SportPlan(UserModel user)
         {
             var generatePlan = new GeneratePlan();
+            //get users from API 
+            var users = new Users();
 
-            var plan = new SportNutritionPlanModel
-            {
-                SportPlan = generatePlan.GenerateSportPlan(user),
-                NutritionPlan = generatePlan.GenerateNutritionPlan(user)
-            };
+            users.PutUser(1, user);
 
-            return View("Plan", plan);
+            //var plan = new SportNutritionPlanModel
+            //{
+            //    SportPlan = generatePlan.GenerateSportPlan(user),
+            //    NutritionPlan = generatePlan.GenerateNutritionPlan(user)
+            //};
+
+            //return View("Plan", plan);
+            return null;
         }
     }
 }

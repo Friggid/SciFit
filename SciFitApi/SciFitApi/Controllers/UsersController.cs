@@ -60,15 +60,20 @@ namespace SciFitApi.Controllers
                 //}
                 throw;
             }
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(user);
         }
 
         //POST api/User
         [ResponseType(typeof(UsersModel))]
         public IHttpActionResult PostUser(UsersModel user)
         {
-            //TODO
-            return null;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Entry(user).State = EntityState.Added;
+            return Ok(user);
         }
     }
 }

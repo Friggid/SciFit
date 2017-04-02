@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using SciFit.Logic;
 using SciFit.Models;
 
 namespace SciFit.Controllers
@@ -17,8 +18,15 @@ namespace SciFit.Controllers
             return View();
         }
 
-        public ActionResult RegisterUser(User user)
+        public ActionResult RegisterUser(UserModel user)
         {
+            var users = new Users();
+
+            //if (users.PostUser(user))
+            //{
+            //    return View("RegisterUserPartial", user);
+            //}
+
             return View("RegisterUserPartial", user);
         }
     }

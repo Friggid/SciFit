@@ -1,6 +1,6 @@
-﻿namespace SciFitApi.Models
+﻿namespace SciFit.Models
 {
-    public class UsersModel
+    public class UserModel
     {
         public int Id { get; set; }
 
