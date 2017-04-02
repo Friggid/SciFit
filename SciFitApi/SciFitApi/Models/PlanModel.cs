@@ -11,8 +11,5 @@
         public string Author { get; set; }
 
         public string StartDate { get; set; }
-
-        //navigate
-        //public virtual UsersModel User { get; set; }
     }
 }

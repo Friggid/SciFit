@@ -73,6 +73,9 @@ namespace SciFitApi.Controllers
             }
 
             db.Entry(user).State = EntityState.Added;
+
+            db.SaveChanges();
+
             return Ok(user);
         }
     }
