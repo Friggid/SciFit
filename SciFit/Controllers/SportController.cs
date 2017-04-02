@@ -9,8 +9,6 @@ namespace SciFit.Controllers
     {
         public ActionResult SportPlan(UserModel userModel)
         {
-            var generatePlan = new GeneratePlan();
-
             //Hardcoded for normal user
             userModel.RoleId = 1;
 
@@ -18,14 +16,10 @@ namespace SciFit.Controllers
 
             if (users.PostUser(userModel))
             {
-                var plan = new SportNutritionPlanModel
-                {
-                    SportPlan = generatePlan.GenerateSportPlan(userModel),
-                    NutritionPlan = generatePlan.GenerateNutritionPlan(userModel)
-                };
-                return View("Plan", plan);
+                return RedirectToAction("Login", "Authentication");
             }
-            return null;
+
+            return RedirectToAction("Login", "Authentication");
         }
 
         public ActionResult Login(UserModel userModel)
@@ -42,8 +36,8 @@ namespace SciFit.Controllers
             {
                 var userData = new SportNutritionPlanModel
                 {
-                    SportPlan = generatePlan.GenerateSportPlan(userModel),
-                    NutritionPlan = generatePlan.GenerateNutritionPlan(userModel),
+                    SportPlan = generatePlan.GenerateSportPlan(loggedInData),
+                    NutritionPlan = generatePlan.GenerateNutritionPlan(loggedInData),
                     User = loggedInData
                 };
 
