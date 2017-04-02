@@ -13,15 +13,15 @@
                     <label for="Age">Age</label>
                     <select class="form-control" id="Age" name="Age" style="margin: auto">
                         @*
-                        &lt; - <
-                        &gt; - >
+                            &lt; - <
+                            &gt; - >
                         *@
                         <option>&lt;18</option>
                         <option>19 - 25</option>
                         <option>&gt;25</option>
                     </select>
                 </div>
-                <hr/>
+                <hr />
                 <div class="form-group">
                     <label for="Weight">Weight</label>
                     <select class="form-control" id="Weight" name="Weight" style="margin: auto">
@@ -55,6 +55,12 @@
                     </select>
                 </div>
                 <hr />
+
+                //Bind data from RegisterView
+                @Html.HiddenFor(userModel => userModel.UserName)
+                @Html.HiddenFor(userModel => userModel.Password)
+                @Html.HiddenFor(userModel => userModel.Email)
+                @Html.HiddenFor(userModel => userModel.RoleId)
                 <button type="submit" class="btn btn-primary">Register</button>
             }
         </div>

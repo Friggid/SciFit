@@ -63,5 +63,24 @@ namespace SciFit.Logic
                 return response.IsSuccessStatusCode;
             }
         }
+
+        public UserModel UserLogin(string userName, string password)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.PostAsync("http://localhost:64483/api/LoginUser?username=" + userName + "&password=" + password, null).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = response.Content.ReadAsStringAsync().Result;
+
+                    var result = JsonConvert.DeserializeObject<UserModel>(json);
+
+                    return result;
+                }
+
+                return null;
+            }
+        }
     }
 }

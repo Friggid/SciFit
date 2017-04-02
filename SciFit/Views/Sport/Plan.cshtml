@@ -19,7 +19,7 @@
                     <img alt="" src="https://www.vexels.com/media/users/3/141735/isolated/preview/f1e0f649e711910f0ef8b84742160df7-sporty-joyfull-man-by-vexels.png">
                 </div>
                 <div class="card-info">
-                    <span class="card-title">Test User</span>
+                    <span class="card-title">@Model.User.UserName</span>
                 </div>
             </div>
             <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
@@ -39,6 +39,17 @@
             <div class="well">
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab1">
+                        @*<div>
+                            <div class="row">
+                                <p>@Model.User.Email</p>
+                                <p>@Model.User.Password</p>
+                                <p>@Model.User.UserName</p>
+                                <p>@Model.User.Age</p>
+                                <p>@Model.User.Height</p>
+                                <p>@Model.User.Weight</p>
+                                <p>@Model.User.Difficulty</p>
+                            </div>
+                        </div>*@
                         <div class="row">
                             @foreach (var item in Model.SportPlan)
                             {
