@@ -18,5 +18,10 @@ namespace SciFitApi.Models
 
         public DbSet<PlanModel> Plan { get; set; }
 
+        public DbSet<SportTemplateModel> SportTemplate { get; set; }
+
+        public DbSet<SportModel> Sport { get; set; }
+
+        public DbSet<SportPlanModel> SportCollection { get; set; }
     }
 }
