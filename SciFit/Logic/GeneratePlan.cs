@@ -5,7 +5,7 @@ namespace SciFit.Logic
 {
     public class GeneratePlan
     {
-        private int adaptPlan(UserModel user)
+        private int? adaptPlan(UserModel user)
         {
             var age =
                 user.Age.Contains("18")
@@ -55,7 +55,7 @@ namespace SciFit.Logic
                 return 3;
             }     
 
-            return 0;
+            return null;
         }
 
         public List<SportPlanModel> GenerateSportPlan(UserModel user)
@@ -73,6 +73,13 @@ namespace SciFit.Logic
                         Reps = "2X8",
                         Image = "https://www.bodybuilding.com/exercises/exerciseImages/sequences/2001/Male/m/2001_1.jpg",
                         Instructions = "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių."
+                    },
+                    new SportPlanModel
+                    {
+                        Name = "Pritūpimai",
+                        Reps = "2X12",
+                        Image = "http://pasmama.tv3.lt/uploads/editor/image/1%281%29.jpg",
+                        Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite."
                     },
                     new SportPlanModel
                     {

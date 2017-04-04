@@ -9,5 +9,9 @@
         public string Image { get; set; }
 
         public string Instructions { get; set; }
+
+        public int Level { get; set; }
+
+        public bool Done { get; set; }
     }
 }

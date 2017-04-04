@@ -18,16 +18,23 @@ namespace SciFit.Controllers
             return View();
         }
 
-        public ActionResult RegisterUser(UserModel user)
+        [HttpPost]
+        public ActionResult Register(UserModel user)
         {
-            var users = new Users();
+            if (ValidateUsername(user.UserName) && user.Password != null && user.Email != null)
+            {
+                return View("RegisterUserPartial", user);
+            }
+            return View();
+        }
 
-            //if (users.PostUser(user))
-            //{
-            //    return View("RegisterUserPartial", user);
-            //}
-
-            return View("RegisterUserPartial", user);
+        public bool ValidateUsername(string username)
+        {
+            if (username != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -27,9 +27,6 @@ namespace SciFit.Controllers
             var generatePlan = new GeneratePlan();
             var user = new Users();
 
-            //Get logged in user data from model in db
-            //var loggedInData = user.PostUser(userModel);
-
             var loggedInData = user.UserLogin(userModel.UserName, userModel.Password);
 
             if (loggedInData != null)
@@ -45,6 +42,23 @@ namespace SciFit.Controllers
             }
 
             return RedirectToAction("Login", "Authentication");
+        }
+
+        public ActionResult UpdatePlan(UserModel userModel)
+        {
+            var generatePlan = new GeneratePlan();
+            var user = new Users();
+
+            var loggedInData = user.UserLogin(userModel.UserName, userModel.Password);
+
+            var userData = new SportNutritionPlanModel
+            {
+                SportPlan = generatePlan.GenerateSportPlan(userModel),
+                NutritionPlan = generatePlan.GenerateNutritionPlan(loggedInData),
+                User = loggedInData
+            };
+
+            return View("Plan", userData);
         }
     }
 }

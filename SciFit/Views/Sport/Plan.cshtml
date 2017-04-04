@@ -60,7 +60,11 @@
                                             <h3>@item.Name</h3>
                                             <p>@item.Instructions</p>
                                             <p>@item.Reps</p>
-                                            <p><a href="#" class="btn btn-primary" role="button">Done</a>
+                                            <p>
+                                                <button class="btn btn-info" type="button" id="addressSearch"
+                                                    onclick="location.href = '@Url.Action("UpdatePlan", "Sport", Model.User)'">Done</button>
+                                            </p>
+                                            <p>@*<a href="#" class="btn btn-primary" role="button">Done</a>*@
                                         </div>
                                     </div>
                                 </div>
