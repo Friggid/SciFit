@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Web;
-using Newtonsoft.Json;
-
-namespace SciFitApi.Models
+﻿namespace SciFit.Models
 {
     public class SportModel
     {
@@ -21,12 +14,8 @@ namespace SciFitApi.Models
 
         public string Instructions { get; set; }
 
-        public int? Level { get; set; }
+        public int Level { get; set; }
 
         public int Done { get; set; }
-
-        [JsonIgnore]
-        [IgnoreDataMember]
-        public virtual SportPlanModel SportPlan { get; set; }
     }
 }

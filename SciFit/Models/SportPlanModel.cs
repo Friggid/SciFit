@@ -1,17 +1,13 @@
-﻿namespace SciFit.Models
+﻿using System.Collections.Generic;
+
+namespace SciFit.Models
 {
     public class SportPlanModel
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
 
-        public string Reps { get; set; }
+        public int UserId { get; set; }
 
-        public string Image { get; set; }
-
-        public string Instructions { get; set; }
-
-        public int Level { get; set; }
-
-        public bool Done { get; set; }
+        public List<SportModel> Sport { get; set; }
     }
 }

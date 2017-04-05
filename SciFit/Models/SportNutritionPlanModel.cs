@@ -7,7 +7,7 @@ namespace SciFit.Models
 {
     public class SportNutritionPlanModel
     {
-        public List<SportPlanModel> SportPlan { get; set; }
+        public List<SportModel> SportPlan { get; set; }
 
         public List<NutritionPlanModel> NutritionPlan { get; set; }
 

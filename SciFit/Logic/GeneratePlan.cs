@@ -5,7 +5,7 @@ namespace SciFit.Logic
 {
     public class GeneratePlan
     {
-        private int? adaptPlan(UserModel user)
+        private int adaptPlan(UserModel user)
         {
             var age =
                 user.Age.Contains("18")
@@ -16,7 +16,7 @@ namespace SciFit.Logic
                             ? 25
                             : (int?) null;
 
-            var weight =
+            string weight =
                 user.Weight.Contains("60")
                     ? "skinny"
                     : user.Weight.Contains("60 - 80")
@@ -27,7 +27,7 @@ namespace SciFit.Logic
                                 ? "overweight"
                                 : null;
 
-            var difficulty =
+            string difficulty =
                 user.Difficulty.Contains("did not train")
                     ? "low"
                     : user.Difficulty.Contains("trained a little")
@@ -55,84 +55,22 @@ namespace SciFit.Logic
                 return 3;
             }     
 
-            return null;
+            return -1;
         }
 
-        public List<SportPlanModel> GenerateSportPlan(UserModel user)
+        public List<SportModel> GenerateSportPlan(UserModel user)
         {
+            var sportPlan = new SportPlan();
+
             var adaptedPlan = adaptPlan(user);
-            List<SportPlanModel> program = null;
+            var program = sportPlan.GetSportPlanById(user.Id);
 
-            if (adaptedPlan == 1)
+            if (program == null)
             {
-                program = new List<SportPlanModel>
-                {
-                    new SportPlanModel
-                    {
-                        Name = "Atsilenkimai",
-                        Reps = "2X8",
-                        Image = "https://www.bodybuilding.com/exercises/exerciseImages/sequences/2001/Male/m/2001_1.jpg",
-                        Instructions = "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių."
-                    },
-                    new SportPlanModel
-                    {
-                        Name = "Pritūpimai",
-                        Reps = "2X12",
-                        Image = "http://pasmama.tv3.lt/uploads/editor/image/1%281%29.jpg",
-                        Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite."
-                    },
-                    new SportPlanModel
-                    {
-                        Name = "Pritūpimai",
-                        Reps = "2X12",
-                        Image = "http://pasmama.tv3.lt/uploads/editor/image/1%281%29.jpg",
-                        Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite."
-                    }
-                };
-            }
-            else if (adaptedPlan == 2)
-            {
-                program = new List<SportPlanModel>
-                {
-                    new SportPlanModel
-                    {
-                        Name = "Mirties kilpa",
-                        Reps = "4X18",
-                        Image = "https://www.bodybuilding.com/exercises/exerciseImages/sequences/2001/Male/m/2001_1.jpg",
-                        Instructions =
-                            "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių."
-                    },
-                    new SportPlanModel
-                    {
-                        Name = "Medziokle",
-                        Reps = "2X120",
-                        Image = "http://pasmama.tv3.lt/uploads/editor/image/1%281%29.jpg",
-                        Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite."
-                    }
-                };
-            }
-            else
-            {
-                program = new List<SportPlanModel>
-                {
-                    new SportPlanModel
-                    {
-                        Name = "DeadLift",
-                        Reps = "2X800",
-                        Image = "https://www.bodybuilding.com/exercises/exerciseImages/sequences/2001/Male/m/2001_1.jpg",
-                        Instructions = "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių."
-                    },
-                    new SportPlanModel
-                    {
-                        Name = "Flying Bus",
-                        Reps = "2X120",
-                        Image = "http://pasmama.tv3.lt/uploads/editor/image/1%281%29.jpg",
-                        Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite."
-                    }
-                };
+                program = sportPlan.PostSportPlan(user.Id, adaptedPlan);
             }
 
-            return program;
+            return program.Sport;
         }
 
         public List<NutritionPlanModel> GenerateNutritionPlan(UserModel user)

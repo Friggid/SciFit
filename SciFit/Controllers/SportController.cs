@@ -44,16 +44,17 @@ namespace SciFit.Controllers
             return RedirectToAction("Login", "Authentication");
         }
 
-        public ActionResult UpdatePlan(UserModel userModel)
+        public ActionResult UpdatePlan(int id, int sportId)
         {
             var generatePlan = new GeneratePlan();
             var user = new Users();
+            var sportPlan = new SportPlan();
 
-            var loggedInData = user.UserLogin(userModel.UserName, userModel.Password);
+            var loggedInData = user.GetUser(id);
 
             var userData = new SportNutritionPlanModel
             {
-                SportPlan = generatePlan.GenerateSportPlan(userModel),
+                SportPlan = sportPlan.PutSportDone(id, sportId).Sport,
                 NutritionPlan = generatePlan.GenerateNutritionPlan(loggedInData),
                 User = loggedInData
             };

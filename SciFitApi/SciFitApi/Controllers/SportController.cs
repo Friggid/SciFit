@@ -23,13 +23,16 @@ namespace SciFitApi.Controllers
         [ResponseType(typeof(SportPlanModel))]
         public IHttpActionResult GetSport(int id)
         {
-            var sportPlan = _db.SportCollection.Find(id);
+            var sportPlan = (from x in _db.SportCollection
+                             where x.UserId == id
+                             select x).SingleOrDefault();
+
             if (sportPlan == null)
             {
                 return NotFound();
             }
             var allSports = (from x in _db.Sport
-                             where x.SportPlanId == id
+                             where x.SportPlanId == sportPlan.Id && x.Done == 0
                              select x).ToList();
 
             sportPlan.Sport = allSports;
@@ -39,7 +42,10 @@ namespace SciFitApi.Controllers
         //PUT api/SportCollection/5
         public IHttpActionResult PutSport(int id, int sportId)
         {
-            var sportPlan = _db.SportCollection.Find(id);
+            var sportPlan = (from x in _db.SportCollection
+                            where x.UserId == id
+                            select x).SingleOrDefault();
+            //_db.SportCollection.Find(id);
             if (sportPlan == null)
             {
                 return BadRequest();
@@ -52,18 +58,18 @@ namespace SciFitApi.Controllers
                 return BadRequest();
             }
 
-            sport.Done = true;
+            sport.Done = 1;
 
             _db.Entry(sport).State = EntityState.Modified;
             _db.SaveChanges();
 
             var allSports = (from x in _db.Sport
-                            where x.SportPlanId == id
+                            where x.SportPlanId == sportPlan.Id && x.Done == 0
                             select x).ToList();
 
             sportPlan.Sport = allSports;
 
-            return Ok(sport);
+            return Ok(sportPlan);
         }
 
         //POST api/SportCollection
