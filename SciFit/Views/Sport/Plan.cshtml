@@ -16,7 +16,13 @@
                     <img alt="" src="https://www.vexels.com/media/users/3/141735/isolated/preview/f1e0f649e711910f0ef8b84742160df7-sporty-joyfull-man-by-vexels.png">
                 </div>
                 <div class="card-info">
-                    <span class="card-title">@Model.User.UserName</span>
+                    @using (Html.BeginForm("MainPanel", "Administration"))
+                    {
+                        @Html.Hidden("roleId", Model.User.RoleId)
+
+                        <button type="submit" class="btn btn-primary">PROFILE</button>
+                    }
+                    @*<span class="card-title">@Model.User.UserName</span>*@
                 </div>
             </div>
             <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">

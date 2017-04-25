@@ -16,19 +16,36 @@
                     <h4>Registration</h4>
                     <hr />
                     <div class="form-group">
-                        <div>
-                            @Html.ValidationMessageFor(m => m.UserName)
+                        <div style="padding-bottom: 1em">
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                         </div>
-                        @Html.LabelFor(m => m.UserName)
+                        @*@Html.LabelFor(m => m.UserName)*@
                         @Html.TextBoxFor(m => m.UserName,
                             new
                             {
                                 @class = "form-control input-sm",
                                 placeholder = "Username",
+                                type = "text",
                                 style = "margin:auto; text-align:center"
                             })
-                        <hr/>
-                        @Html.ValidationMessageFor(m => m.Password)
+                        <hr />
+                        <div style="padding-bottom: 1em">
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                        @*@Html.LabelFor(m => m.Email)*@
+                        @Html.TextBoxFor(m => m.Email,
+                            new
+                            {
+                                @class = "form-control input-sm",
+                                placeholder = "Email@gmail.com",
+                                type = "email",
+                                style = "margin:auto; text-align:center"
+                            })
+                        <hr />
+                        <div style="padding-bottom: 1em">
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                        @*@Html.LabelFor(m => m.Password)*@
                         @Html.TextBoxFor(m => m.Password,
                             new
                             {
@@ -37,19 +54,20 @@
                                 type = "password",
                                 style = "margin:auto; text-align:center"
                             })
-                        <hr/>
-                        @Html.ValidationMessageFor(m => m.Email)
-                        @Html.LabelFor(m => m.Email)
-                        @Html.TextBoxFor(m => m.Email,
+                        <hr />
+                        <div style="padding-bottom: 1em">
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                        @*@Html.LabelFor(m => m.ConfirmPassword)*@
+                        @Html.TextBoxFor(m => m.ConfirmPassword,
                             new
                             {
                                 @class = "form-control input-sm",
-                                placeholder = "email@email.com",
-                                type = "email",
+                                placeholder = "Confirm Password",
+                                type = "password",
                                 style = "margin:auto; text-align:center"
                             })
-                        @*<input type="text" id="email" name="Email" class="form-control input-sm" style="margin: auto" placeholder="User@mail.com" />*@
-                        <hr/>
+                        <hr />
                         <button type="submit" class="btn btn-primary">Continue</button>
                     </div>
                 }
