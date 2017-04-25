@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SciFitApi.Models;
@@ -13,7 +10,7 @@ namespace SciFitApi.Controllers
 {
     public class UsersController : ApiController
     {
-        private SciFitApiContext _db = new SciFitApiContext();
+        private readonly SciFitApiContext _db = new SciFitApiContext();
 
         //GET api/Users
         public IQueryable<UsersModel> GetUsers()
@@ -76,11 +73,40 @@ namespace SciFitApi.Controllers
                 return BadRequest("email");
             }
 
+            user.Password = HashPass(user.Password);
+
             _db.Entry(user).State = EntityState.Added;
 
             _db.SaveChanges();
 
             return Ok(user);
         }
+
+        #region Private helpers
+        private string HashPass(string pass)
+        {
+            var result = pass;
+            using (var md5Hash = MD5.Create())
+            {
+                // Convert the input string to a byte array and compute the hash.
+                var data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(pass));
+
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                var sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                // Return the hexadecimal string.
+                result = sBuilder.ToString();
+            }
+            return result;
+        }
+        #endregion
     }
 }
