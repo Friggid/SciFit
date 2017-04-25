@@ -23,9 +23,9 @@ namespace SciFit.Controllers
 
             var users = new Users();
 
-            if (users.PostUser(userModel.User))
+            if (!users.PostUser(userModel.User))
             {
-                return RedirectToAction("Login", "Authentication");
+                return RedirectToAction("Register", "Authentication");
             }
             return RedirectToAction("Login", "Authentication");
         }

@@ -47,19 +47,9 @@ namespace SciFitApi.Controllers
             }
 
             _db.Entry(user).State = EntityState.Modified;
-            try
-            {
-                _db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                //TODO
-                //if (!UserExists(id))
-                //{
-                //    return NotFound();
-                //}
-                throw;
-            }
+
+            _db.SaveChanges();
+           
             return Ok(user);
         }
 
