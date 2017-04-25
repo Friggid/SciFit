@@ -15,10 +15,26 @@
                 {
                     <h4>Welcome back.</h4>
                     <hr />
-                    <input type="text" id="userName" class="form-control input-sm" style="margin: auto" placeholder="username" name="UserName"/>
-                    <br>
-                    <input type="text" id="userPassword" class="form-control input-sm" style="margin: auto" placeholder="password" name="Password"/>
-                    <br>
+                    @*@Html.LabelFor(m => m.UserName)*@
+                    @Html.TextBoxFor(m => m.UserName,
+                        new
+                        {
+                            @class = "form-control input-sm",
+                            placeholder = "username",
+                            type = "text",
+                            style = "margin:auto; text-align:center"
+                        })
+                    <hr />
+                    @*@Html.LabelFor(m => m.Password)*@
+                    @Html.TextBoxFor(m => m.Password,
+                        new
+                        {
+                            @class = "form-control input-sm",
+                            placeholder = "Password",
+                            type = "password",
+                            style = "margin:auto; text-align:center"
+                        })
+                    <hr />
                     <button type="submit" class="btn btn-primary">Login</button>
                 }
             </div>

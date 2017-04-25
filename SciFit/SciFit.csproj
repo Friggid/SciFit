@@ -151,6 +151,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SportController.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Logic\GeneratePlan.cs" />
     <Compile Include="Logic\SportPlan.cs" />
     <Compile Include="Logic\Users.cs" />
+    <Compile Include="Models\AdministrationModel.cs" />
     <Compile Include="Models\NutritionPlanModel.cs" />
     <Compile Include="Models\SportNutritionPlanModel.cs" />
     <Compile Include="Models\SportModel.cs" />
@@ -229,8 +231,12 @@
     <Content Include="Views\Authentication\Register.cshtml" />
     <Content Include="Views\Authentication\RegisterUserPartial.cshtml" />
     <Content Include="Views\Home\Program.cshtml" />
-    <Content Include="Views\Sport\SportPlanPartial.cshtml" />
     <Content Include="Views\Sport\Plan.cshtml" />
+    <Content Include="Views\Administration\MainPanel.cshtml" />
+    <Content Include="Views\Administration\UserPartial.cshtml" />
+    <Content Include="Views\Administration\AdminPartial.cshtml" />
+    <Content Include="Views\Administration\AdminUsersPartial.cshtml" />
+    <Content Include="Views\Administration\AdminPlansPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
