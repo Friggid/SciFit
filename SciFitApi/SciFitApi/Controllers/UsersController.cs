@@ -13,19 +13,19 @@ namespace SciFitApi.Controllers
 {
     public class UsersController : ApiController
     {
-        private SciFitApiContext db = new SciFitApiContext();
+        private SciFitApiContext _db = new SciFitApiContext();
 
         //GET api/Users
         public IQueryable<UsersModel> GetUsers()
         {
-            return db.Users;
+            return _db.Users;
         }
 
         //GET api/Users/5
         [ResponseType(typeof(UsersModel))]
         public IHttpActionResult GetUser(int id)
         {
-            var user = db.Users.Find(id);
+            var user = _db.Users.Find(id);
             if (user == null)
             {
                 return NotFound();
@@ -46,10 +46,10 @@ namespace SciFitApi.Controllers
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            _db.Entry(user).State = EntityState.Modified;
             try
             {
-                db.SaveChanges();
+                _db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -71,10 +71,24 @@ namespace SciFitApi.Controllers
             {
                 return BadRequest(ModelState);
             }
+            var users = (from x in _db.Users
+                         where x.UserName == user.UserName
+                         select x).ToList();
+            if (users.Count > 0)
+            {
+                return BadRequest("username");
+            }
+            users = (from x in _db.Users
+                         where x.Email == user.Email
+                         select x).ToList();
+            if (users.Count > 0)
+            {
+                return BadRequest("email");
+            }
 
-            db.Entry(user).State = EntityState.Added;
+            _db.Entry(user).State = EntityState.Added;
 
-            db.SaveChanges();
+            _db.SaveChanges();
 
             return Ok(user);
         }
