@@ -61,7 +61,7 @@
                                         <p>@item.Instructions</p>
                                         <p>@item.Reps</p>
                                         <p>
-                                            @Html.ActionLink("Done", "UpdatePlan", "Sport", new { id = @Model.User.Id, sportId = item.Id }, new {@class = "btn btn-info"})
+                                            @Html.ActionLink("Done", "UpdatePlan", "Sport", new { id = @Model.User.Id, sportId = item.Id, lvl = item.Level }, new {@class = "btn btn-info"})
                                         </p>
                                         <p>@*<a href="#" class="btn btn-primary" role="button">Done</a>*@
                                     </div>

@@ -62,5 +62,13 @@ namespace SciFit.Logic
                 return result;
             }
         }
+
+        public void DeleteSportPlan(int id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.DeleteAsync("http://localhost:64483/api/Sport/" + id).Result;
+            }
+        }
     }
 }

@@ -84,6 +84,14 @@ namespace SciFitApi.Controllers
                              where x.Level == level
                              select x).ToList();
 
+            if (sportPlan.Count == 0)
+            {
+                sportPlan = (from x in _db.SportTemplate
+                             where x.Level == level-1
+                             select x).ToList();
+            }
+
+
             var sportMapped = Mapper.Map<List<SportModel>>(sportPlan);
 
             var sportCollection = new SportPlanModel
@@ -97,6 +105,23 @@ namespace SciFitApi.Controllers
             _db.SaveChanges();
 
             return Ok(sportCollection);
+        }
+
+        public IHttpActionResult DeleteSport(int id)
+        {
+            var sportPlan = (from x in _db.SportCollection
+                             where x.UserId == id
+                             select x).SingleOrDefault();
+
+            if (sportPlan == null)
+            {
+                return NotFound();
+            }
+           
+            _db.Entry(sportPlan).State = EntityState.Deleted;
+
+            _db.SaveChanges();
+            return Ok();
         }
     }
 }
