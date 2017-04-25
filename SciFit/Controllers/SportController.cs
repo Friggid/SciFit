@@ -7,18 +7,26 @@ namespace SciFit.Controllers
 {
     public class SportController : Controller
     {
-        public ActionResult SportPlan(UserModel userModel)
+        public ActionResult SportPlan(UserModelPartialView userModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("RegisterValidation", "Authentication", userModel.User);
+            }
+
             //Hardcoded for normal user
-            userModel.RoleId = 1;
+            userModel.User.RoleId = 1;
+            userModel.User.Age = userModel.Age;
+            userModel.User.Weight = userModel.Weight;
+            userModel.User.Height = userModel.Height;
+            userModel.User.Difficulty = userModel.Difficulty;
 
             var users = new Users();
 
-            if (users.PostUser(userModel))
+            if (users.PostUser(userModel.User))
             {
                 return RedirectToAction("Login", "Authentication");
             }
-
             return RedirectToAction("Login", "Authentication");
         }
 

@@ -1,4 +1,4 @@
-﻿@model SciFit.Models.UserModel
+﻿@model SciFit.Models.UserModelMainView
 @{
     ViewBag.Title = "Register";
 }
@@ -16,15 +16,40 @@
                     <h4>Registration</h4>
                     <hr />
                     <div class="form-group">
-                        @Html.ValidationMessageFor(m => m.UserName)
-                        <input type="text" id="userName" name="UserName" class="form-control input-sm" style="margin: auto" placeholder="Username" />
-                        <hr />
+                        <div>
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName,
+                            new
+                            {
+                                @class = "form-control input-sm",
+                                placeholder = "Username",
+                                style = "margin:auto; text-align:center"
+                            })
+                        <hr/>
                         @Html.ValidationMessageFor(m => m.Password)
-                        <input type="text" id="userPassword" name="Password" class="form-control input-sm" style="margin: auto" placeholder="Password" />
-                        <hr />
+                        @Html.TextBoxFor(m => m.Password,
+                            new
+                            {
+                                @class = "form-control input-sm",
+                                placeholder = "Password",
+                                type = "password",
+                                style = "margin:auto; text-align:center"
+                            })
+                        <hr/>
                         @Html.ValidationMessageFor(m => m.Email)
-                        <input type="text" id="email" name="Email" class="form-control input-sm" style="margin: auto" placeholder="User@mail.com" />
-                        <hr />
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email,
+                            new
+                            {
+                                @class = "form-control input-sm",
+                                placeholder = "email@email.com",
+                                type = "email",
+                                style = "margin:auto; text-align:center"
+                            })
+                        @*<input type="text" id="email" name="Email" class="form-control input-sm" style="margin: auto" placeholder="User@mail.com" />*@
+                        <hr/>
                         <button type="submit" class="btn btn-primary">Continue</button>
                     </div>
                 }
@@ -33,3 +58,8 @@
     </div>
 </div>
 
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}

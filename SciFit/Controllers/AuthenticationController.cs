@@ -6,8 +6,6 @@ namespace SciFit.Controllers
 {
     public class AuthenticationController : Controller
     {
-        // GET: Authentication
-
         public ActionResult Login()
         {
             return View();
@@ -19,22 +17,32 @@ namespace SciFit.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(UserModel user)
+        public ActionResult Register(UserModelMainView user)
         {
-            if (ValidateUsername(user.UserName) && user.Password != null && user.Email != null)
+            if (ModelState.IsValid)
             {
-                return View("RegisterUserPartial", user);
+                var mainView = new UserModelPartialView()
+                {
+                    User = user.User = new UserModel()
+                    {
+                        UserName = user.UserName,
+                        Password = user.Password,
+                        Email = user.Email
+                    }
+                };
+
+                return View("RegisterUserPartial", mainView);
             }
             return View();
         }
-
-        public bool ValidateUsername(string username)
+        public ActionResult RegisterValidation(UserModel partialView)
         {
-            if (username != null)
+            var mainView = new UserModelPartialView()
             {
-                return true;
-            }
-            return false;
+                User = partialView
+            };
+
+            return View("RegisterUserPartial", mainView);
         }
     }
 }
