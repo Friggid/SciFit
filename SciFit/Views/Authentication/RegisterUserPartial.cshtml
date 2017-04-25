@@ -1,4 +1,4 @@
-﻿@model SciFit.Models.UserModel
+﻿@model SciFit.Models.UserModelPartialView
 @section styles{
     <link rel="Stylesheet" href="@Href("~/Content/Site.css")" />
 }
@@ -43,6 +43,7 @@
                 </div>
                 <hr />
                 <div class="form-group">
+                    @Html.ValidationMessageFor(m => m.Difficulty)
                     <label for="Difficulty">How much did you train before?</label>
                     <select multiple class="form-control" id="Difficulty" name="Difficulty" style="margin: auto">
                         <option>I did not train</option>
@@ -57,12 +58,18 @@
                 <hr />
 
                 //Bind data from RegisterView
-                @Html.HiddenFor(userModel => userModel.UserName)
-                @Html.HiddenFor(userModel => userModel.Password)
-                @Html.HiddenFor(userModel => userModel.Email)
-                @Html.HiddenFor(userModel => userModel.RoleId)
+                @Html.HiddenFor(userModel => userModel.User.UserName)
+                @Html.HiddenFor(userModel => userModel.User.Password)
+                @Html.HiddenFor(userModel => userModel.User.Email)
+
                 <button type="submit" class="btn btn-primary">Register</button>
             }
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}
