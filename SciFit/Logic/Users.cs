@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using SciFit.Models;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -66,9 +67,10 @@ namespace SciFit.Logic
 
         public UserModel UserLogin(string userName, string password)
         {
+            var hashedPass = HashPass(password);
             using (var httpClient = new HttpClient())
             {
-                var response = httpClient.PostAsync("http://localhost:64483/api/LoginUser?username=" + userName + "&password=" + password, null).Result;
+                var response = httpClient.PostAsync("http://localhost:64483/api/LoginUser?username=" + userName + "&password=" + hashedPass, null).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -82,5 +84,32 @@ namespace SciFit.Logic
                 return null;
             }
         }
+
+        #region Private helpers
+        private string HashPass(string pass)
+        {
+            var result = pass;
+            using (var md5Hash = MD5.Create())
+            {
+                // Convert the input string to a byte array and compute the hash.
+                var data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(pass));
+
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                var sBuilder = new StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                // Return the hexadecimal string.
+                result = sBuilder.ToString();
+            }
+            return result;
+        }
+        #endregion
     }
 }
