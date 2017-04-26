@@ -53,7 +53,7 @@ namespace SciFit.Controllers
                 }
                 return View("Plan", userData);
             }
-
+            TempData["badPassword"] = "Username/Password is incorrect!";
             return RedirectToAction("Login", "Authentication");
         }
 

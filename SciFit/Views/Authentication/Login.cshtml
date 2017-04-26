@@ -14,8 +14,12 @@
                 @using (Html.BeginForm("Login", "Sport"))
                 {
                     <h4>Welcome back.</h4>
+                    if (ViewBag.BadPassword != null)
+                    {
+                        <hr/>
+                        <div class="text-danger">@ViewBag.BadPassword</div>
+                    }
                     <hr />
-                    @*@Html.LabelFor(m => m.UserName)*@
                     @Html.TextBoxFor(m => m.UserName,
                         new
                         {
@@ -25,7 +29,6 @@
                             style = "margin:auto; text-align:center"
                         })
                     <hr />
-                    @*@Html.LabelFor(m => m.Password)*@
                     @Html.TextBoxFor(m => m.Password,
                         new
                         {

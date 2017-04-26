@@ -8,6 +8,10 @@ namespace SciFit.Controllers
     {
         public ActionResult Login()
         {
+            if (TempData["badPassword"] != null)
+            {
+                ViewBag.BadPassword = TempData["badPassword"].ToString();
+            }
             return View();
         }
 
