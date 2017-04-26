@@ -15,41 +15,15 @@
                 <div class="useravatar">
                     <img alt="" src="https://www.vexels.com/media/users/3/141735/isolated/preview/f1e0f649e711910f0ef8b84742160df7-sporty-joyfull-man-by-vexels.png">
                 </div>
-                <div class="card-info">
-                    @using (Html.BeginForm("UserProfile", "Administration"))
-                    {
-                        @Html.HiddenFor(userModel => userModel.User.UserName)
-                        @Html.HiddenFor(userModel => userModel.User.Password)
-                        @Html.HiddenFor(userModel => userModel.User.Email)
-                        @Html.HiddenFor(userModel => userModel.User.Id)
-                        @Html.HiddenFor(userModel => userModel.User.Address)
-                        @Html.HiddenFor(userModel => userModel.User.Age)
-                        @Html.HiddenFor(userModel => userModel.User.Difficulty)
-                        @Html.HiddenFor(userModel => userModel.User.Height)
-                        @Html.HiddenFor(userModel => userModel.User.Name)
-                        @Html.HiddenFor(userModel => userModel.User.Surname)
-                        @Html.HiddenFor(userModel => userModel.User.Weight)
-                        <button type="submit" class="btn btn-primary">PROFILE</button>
-                    }
-
-                </div>
-                <div class="card-info">
-                    @using (Html.BeginForm("CreatePlan", "Administration"))
-                    {
-                        @Html.Hidden("roleId", Model.User.RoleId)
-
-                        <button type="submit" class="btn btn-primary">PROFILE</button>
-                    }
-
-                </div>
-                <div class="card-info">
-                    @using (Html.BeginForm("EditPlan", "Administration"))
-                    {
-                    @Html.Hidden("roleId", Model.User.RoleId)
-
-                    <button type="submit" class="btn btn-primary">PROFILE</button>
-                    }
-                </div>
+            </div>
+            <div class="card-info">
+                @Html.ActionLink("Done", "UserProfile", "Administration", new { id = Model.User.Id, pass = Model.User.Password}, new {@class = "btn btn-info"})
+            </div>
+            <div class="card-info">
+                @Html.ActionLink("Done", "CreatePlan", "Administration", new { id = Model.User.Id, pass = Model.User.Password}, new {@class = "btn btn-info"})
+            </div>
+            <div class="card-info">
+                @Html.ActionLink("Done", "EditPlan", "Administration", new { id = Model.User.Id, pass = Model.User.Password}, new {@class = "btn btn-info"})
             </div>
             <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                 <div class="btn-group" role="group">

@@ -159,16 +159,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\GeneratePlan.cs" />
+    <Compile Include="Logic\PlanTemplate.cs" />
     <Compile Include="Logic\SportPlan.cs" />
     <Compile Include="Logic\Users.cs" />
     <Compile Include="Models\AdministrationModel.cs" />
     <Compile Include="Models\NutritionPlanModel.cs" />
+    <Compile Include="Models\PlanTemplateModel.cs" />
     <Compile Include="Models\SportNutritionPlanModel.cs" />
     <Compile Include="Models\SportModel.cs" />
     <Compile Include="Models\SportPlanModel.cs" />
+    <Compile Include="Models\TemplateViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserModelMainView.cs" />
     <Compile Include="Models\UserModelPartialView.cs" />
+    <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +244,7 @@
     <Content Include="Views\Administration\UserProfile.cshtml" />
     <Content Include="Views\Administration\CreatePlan.cshtml" />
     <Content Include="Views\Administration\EditPlan.cshtml" />
+    <Content Include="Views\Administration\EditPlanSelected.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

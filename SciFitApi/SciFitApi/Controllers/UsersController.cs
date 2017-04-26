@@ -44,10 +44,17 @@ namespace SciFitApi.Controllers
             }
 
             _db.Entry(user).State = EntityState.Modified;
-
+            _db.Entry(user).Property(x => x.Password).IsModified = false;
             _db.SaveChanges();
-           
-            return Ok(user);
+
+            var user1 = _db.Users.Find(id);
+
+            var password = (from x in _db.Users
+                         where x.Id == id
+                         select x.Password).ToString();
+
+            user1.Password = password;
+            return Ok(user1);
         }
 
         //POST api/User

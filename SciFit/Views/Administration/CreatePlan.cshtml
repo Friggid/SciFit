@@ -1,1 +1,92 @@
-﻿
+﻿@model SciFit.Models.PlanTemplateModel
+@section styles{
+<link rel="Stylesheet" href="@Href(" ~/Content/Site.css")" />
+}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center" style="float: none; margin: auto">
+            @using (Html.BeginForm("CreatePlanCreate", "Administration"))
+            {
+                <h4>Edit profile</h4>
+                <hr />
+                <div style="padding-bottom: 1em">
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+            @*@Html.LabelFor(m => m.UserName)*@
+                @Html.TextBoxFor(m => m.Name,
+                    new
+                    {
+                        @class = "form-control input-sm",
+                        placeholder = "Name",
+                        type = "text",
+                        style = "margin:auto; text-align:center"
+                    })
+                <hr />
+                <div style="padding-bottom: 1em">
+                    @Html.ValidationMessageFor(m => m.Reps, "", new { @class = "text-danger" })
+                </div>
+            @*@Html.LabelFor(m => m.Email)*@
+                @Html.TextBoxFor(m => m.Reps,
+                    new
+                    {
+                        @class = "form-control input-sm",
+                        placeholder = "Reps",
+                        type = "text",
+                        style = "margin:auto; text-align:center"
+                    })
+                <hr />
+                <div style="padding-bottom: 1em">
+                    @Html.ValidationMessageFor(m => m.Image, "", new { @class = "text-danger" })
+                </div>
+            @*@Html.LabelFor(m => m.Email)*@
+                @Html.TextBoxFor(m => m.Image,
+                    new
+                    {
+                        @class = "form-control input-sm",
+                        placeholder = "Image",
+                        type = "text",
+                        style = "margin:auto; text-align:center"
+                    })
+                <hr />
+                <div style="padding-bottom: 1em">
+                    @Html.ValidationMessageFor(m => m.Instructions, "", new { @class = "text-danger" })
+                </div>
+            @*@Html.LabelFor(m => m.Email)*@
+                @Html.TextBoxFor(m => m.Instructions,
+                    new
+                    {
+                        @class = "form-control input-sm",
+                        placeholder = "Instructions",
+                        type = "text",
+                        style = "margin:auto; text-align:center"
+                    })
+                <hr />
+                <div style="padding-bottom: 1em">
+                    @Html.ValidationMessageFor(m => m.Level, "", new { @class = "text-danger" })
+                </div>
+            @*@Html.LabelFor(m => m.Email)*@
+                @Html.TextBoxFor(m => m.Level,
+                    new
+                    {
+                        @class = "form-control input-sm",
+                        placeholder = "Level",
+                        type = "number",
+                        style = "margin:auto; text-align:center"
+                    })
+                <hr />
+
+                @Html.HiddenFor(userModel => userModel.Id)
+                <button type="submit" class="btn btn-primary">Create</button>
+            }
+        </div>
+        <div>
+            @Html.ActionLink("Cancel", "CreatePlanCancel", "Administration", new { id = Model.Id, pass = ViewBag.Pass}, new {@class = "btn btn-info"})
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}

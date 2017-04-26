@@ -37,8 +37,9 @@ namespace SciFit.Logic
             }
         }
 
-        public bool PutUser(int id, UserModel model)
+        public UserModel PutUser(int id, UserModel model)
         {
+            UserModel result = null;
             using (var httpClient = new HttpClient())
             {
                 var json = JsonConvert.SerializeObject(model);
@@ -47,7 +48,13 @@ namespace SciFit.Logic
 
                 var response = httpClient.PutAsync("http://localhost:64483/api/Users/" + id, content).Result;
 
-                return response.IsSuccessStatusCode;
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResult = response.Content.ReadAsStringAsync().Result;
+
+                    result = JsonConvert.DeserializeObject<UserModel>(jsonResult);
+                }
+                return result;
             }
         }
 
@@ -67,7 +74,11 @@ namespace SciFit.Logic
 
         public UserModel UserLogin(string userName, string password)
         {
-            var hashedPass = HashPass(password);
+            var hashedPass = password;
+            if (!IsValidMD5(password))
+            {
+                hashedPass = HashPass(password);
+            }
             using (var httpClient = new HttpClient())
             {
                 var response = httpClient.PostAsync("http://localhost:64483/api/LoginUser?username=" + userName + "&password=" + hashedPass, null).Result;
@@ -88,6 +99,10 @@ namespace SciFit.Logic
         #region Private helpers
         private string HashPass(string pass)
         {
+            if (pass == null)
+            {
+                return null;
+            }
             var result = pass;
             using (var md5Hash = MD5.Create())
             {
@@ -109,6 +124,19 @@ namespace SciFit.Logic
                 result = sBuilder.ToString();
             }
             return result;
+        }
+
+        private bool IsValidMD5(string md5)
+        {
+            if (md5 == null || md5.Length != 32) return false;
+            foreach (var x in md5)
+            {
+                if ((x < '0' || x > '9') && (x < 'a' || x > 'f') && (x < 'A' || x > 'F'))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         #endregion
     }

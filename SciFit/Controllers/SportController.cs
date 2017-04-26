@@ -51,6 +51,7 @@ namespace SciFit.Controllers
                 {
                     userData.SportPlan = sportPlan.PostSportPlan(loggedInData.Id, 1).Sport;// temp fix lvl nr 1
                 }
+                ViewBag.Id = userData.User.Id;
                 return View("Plan", userData);
             }
             TempData["badPassword"] = "Username/Password is incorrect!";
