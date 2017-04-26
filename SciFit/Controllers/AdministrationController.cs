@@ -25,5 +25,26 @@ namespace SciFit.Controllers
         {
             return PartialView("AdminPlansPartial");
         }
+
+        public ActionResult UserProfile(UserModel model)
+        {
+            return View(model);
+        }
+
+        public ActionResult CreatePlan()
+        {
+            return View();
+        }
+
+        public ActionResult EditPlan()
+        {
+            return View();
+        }
+
+        public ActionResult UserProfileSave()
+        {
+            return View();
+        }
+
     }
 }

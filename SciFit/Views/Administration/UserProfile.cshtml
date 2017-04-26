@@ -1,0 +1,108 @@
+﻿@model SciFit.Models.UserModel
+@section styles{
+<link rel="Stylesheet" href="@Href(" ~/Content/Site.css")" />
+}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center" style="float: none; margin: auto">
+            @using (Html.BeginForm("UserProfileSave", "Administration"))
+            {
+            <h4>Edit profile</h4>
+                <hr />
+            <div style="padding-bottom: 1em">
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+            </div>
+            @*@Html.LabelFor(m => m.UserName)*@
+            @Html.TextBoxFor(m => m.UserName,
+            new
+            {
+            @class = "form-control input-sm",
+            placeholder = "Username",
+            type = "text",
+            style = "margin:auto; text-align:center"
+            })
+            <hr />
+            <div style="padding-bottom: 1em">
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+            @*@Html.LabelFor(m => m.Email)*@
+            @Html.TextBoxFor(m => m.Email,
+            new
+            {
+            @class = "form-control input-sm",
+            placeholder = "Email@gmail.com",
+            type = "email",
+            style = "margin:auto; text-align:center"
+            })
+            <hr />
+            <div style="padding-bottom: 1em">
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+            @*@Html.LabelFor(m => m.Password)*@
+            @Html.TextBoxFor(m => m.Password,
+            new
+            {
+            @class = "form-control input-sm",
+            placeholder = "Password",
+            type = "password",
+            style = "margin:auto; text-align:center"
+            })
+            <hr />
+            <div class="form-group">
+                <label for="Age">Age</label>
+                <select class="form-control" id="Age" name="Age" style="margin: auto">
+                    @*
+                    &lt; - <
+                    &gt; - >
+                    *@
+                    <option>&lt;18</option>
+                    <option>19 - 25</option>
+                    <option>&gt;25</option>
+                </select>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label for="Weight">Weight</label>
+                <select class="form-control" id="Weight" name="Weight" style="margin: auto">
+                    <option>&lt;60</option>
+                    <option>60 - 80</option>
+                    <option>80 - 100</option>
+                    <option>&gt;100</option>
+                </select>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label for="Height">Height</label>
+                <select class="form-control" id="Height" name="Height" style="margin: auto">
+                    <option>&lt;160cm</option>
+                    <option>160 - 180cm</option>
+                    <option>180 - 200cm</option>
+                    <option>&gt;200cm</option>
+                </select>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label for="Difficulty">How much did you train before?</label>
+                <select multiple class="form-control" id="Difficulty" name="Difficulty" style="margin: auto">
+                    <option selected="selected">I did not train</option>
+                    <option style="font-size: 0.1pt; background-color: gray; opacity: 0.2" disabled>&nbsp;</option>
+                    <option>I trained a little</option>
+                    <option style="font-size: 0.1pt; background-color: gray; opacity: 0.2" disabled>&nbsp;</option>
+                    <option>I trained few times a week</option>
+                    <option style="font-size: 0.1pt; background-color: gray; opacity: 0.2" disabled>&nbsp;</option>
+                    <option>I trained a lot every week</option>
+                </select>
+            </div>
+                <hr />
+
+            <button type="submit" class="btn btn-primary">Register</button>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}
