@@ -1,28 +1,38 @@
 ﻿@section styles{
-<link rel="Stylesheet" href="@Href(" ~/Content/Site.css")" />
+    <link rel="Stylesheet" href="@Href(" ~/Content/Site.css")" />
 }
+
 <div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 text-center" style="float: none; margin: auto">
-            @foreach (var item in Model)
-            {
-            <div class="col-sm-6 col-md-4" style="text-align: center">
-                <div class="thumbnail">
-                    <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
-                    <div class="caption">
-                        <h3>@item.Name</h3>
-                        <p>@item.Instructions</p>
-                        <p>@item.Reps</p>
-                        <p>
-                            @Html.ActionLink("Select", "EditPlanSelected", "Administration", new { id = item.Id, userId = ViewBag.Id, pass = ViewBag.Pass }, new {@class = "btn btn-info"})
-                        </p>
-                        <p>@*<a href="#" class="btn btn-primary" role="button">Done</a>*@
-                    </div>
+    <div class="center-block">
+        <div class="col-lg-12 col-sm-12">
+            <div class="row">
+                <div style="padding: 30px;display: flex; justify-content: center;">
+                    @Html.ActionLink("Cancel", "CreatePlanCancel", "Administration",
+                        new { id = ViewBag.Id, pass = ViewBag.Pass },
+                        new
+                        {
+                            @class = "btn btn-info btn-block",
+                            style = "font-size: 18px; width: 60%;"
+                        })
                 </div>
-            </div>
-            }
-            <div>
-                @Html.ActionLink("Cancel", "CreatePlanCancel", "Administration", new { id = ViewBag.Id, pass = ViewBag.Pass}, new {@class = "btn btn-info"})
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4" style="text-align: center">
+                        <div class="thumbnail">
+                            <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                            <div class="caption">
+                                <h3>@item.Name</h3>
+                                <div style="min-height: 50px">
+                                    <p>@item.Instructions</p>
+                                </div>
+                                <p>@item.Reps</p>
+                                <p>
+                                    @Html.ActionLink("Edit", "EditPlanSelected", "Administration", new {id = item.Id, userId = ViewBag.Id, pass = ViewBag.Pass}, new {@class = "btn btn-info"})
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>

@@ -236,11 +236,6 @@
     <Content Include="Views\Authentication\RegisterUserPartial.cshtml" />
     <Content Include="Views\Home\Program.cshtml" />
     <Content Include="Views\Sport\Plan.cshtml" />
-    <Content Include="Views\Administration\MainPanel.cshtml" />
-    <Content Include="Views\Administration\UserPartial.cshtml" />
-    <Content Include="Views\Administration\AdminPartial.cshtml" />
-    <Content Include="Views\Administration\AdminUsersPartial.cshtml" />
-    <Content Include="Views\Administration\AdminPlansPartial.cshtml" />
     <Content Include="Views\Administration\UserProfile.cshtml" />
     <Content Include="Views\Administration\CreatePlan.cshtml" />
     <Content Include="Views\Administration\EditPlan.cshtml" />
