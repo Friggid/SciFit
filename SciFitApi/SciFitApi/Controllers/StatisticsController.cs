@@ -18,10 +18,10 @@ namespace SciFitApi.Controllers
 
         //GET api/Statistics/5
         [ResponseType(typeof(StatisticsModel))]
-        public IHttpActionResult GetStatistics(int id)
+        public IHttpActionResult GetStatistics(int id)//id = UserId
         {
             var statistics = (from x in _db.Statistics
-                                 where x.Id == id
+                                 where x.UserId == id
                                  select x).SingleOrDefault();
 
             if (statistics == null)
