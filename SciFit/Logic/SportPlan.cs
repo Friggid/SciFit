@@ -7,7 +7,7 @@ namespace SciFit.Logic
 {
     public class SportPlan
     {
-        public List<SportPlanModel> GetSportPlan()
+        public List<SportPlanModel> GetSportPlans()
         {
             using (var httpClient = new HttpClient())
             {

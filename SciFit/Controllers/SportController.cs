@@ -30,6 +30,12 @@ namespace SciFit.Controllers
             return RedirectToAction("Login", "Authentication");
         }
 
+        public ActionResult Plan()
+        {
+            var model = Session["UserData"];
+            return View(model);
+        }
+
         public ActionResult Login(UserModel userModel)
         {
             var generatePlan = new GeneratePlan();
@@ -59,7 +65,7 @@ namespace SciFit.Controllers
                 {
                     return RedirectToAction("AdminPanel", "Administration");
                 }
-                return View("Plan", userData);
+                return RedirectToAction("Plan", "Sport");
             }
 
             TempData["badPassword"] = "Username/Password is incorrect!";

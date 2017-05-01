@@ -1,7 +1,7 @@
 ﻿@model SciFit.Models.AdministrationModel
 
 @{
-    var grid = new WebGrid(Model.Users, canPage: true, rowsPerPage: 10, defaultSort: "Id");
+    var grid = new WebGrid(Model.Plans, canPage: true, rowsPerPage: 10, defaultSort: "Level");
     grid.Pager(WebGridPagerModes.All);
 }
 
@@ -10,7 +10,7 @@
 
         <div class="row" style="padding-bottom: 20px">
             <div class="card-info col-md-6">
-                @Html.ActionLink("Edit plans", "AdministratePlans", "Administration",
+                @Html.ActionLink("Edit users", "AdminPanel", "Administration",
                     new
                     {
                         @class = "btn btn-info",
@@ -18,7 +18,7 @@
                     })
             </div>
             <div class="card-info col-md-6">
-                @Html.ActionLink("Create new sport plan", "CreatePlan", "Administration",
+                @Html.ActionLink("Create new plan", "CreatePlan", "Administration",
                     new
                     {
                         @class = "btn btn-info",
@@ -37,14 +37,17 @@
                 rowStyle: "webgrid-row-style",
                 mode: WebGridPagerModes.All,
                 columns: grid.Columns(
-                    grid.Column("UserName", header: "Username"),
-                    grid.Column("Email", header: "Email"),
+                    grid.Column("Level", header: "Level"),
+                    grid.Column("Id", header: "Id"),
+                    grid.Column("Name", header: "Name"),
+                    grid.Column("Reps", header: "Reps"),
+                    grid.Column("Instructions", header: "Instructions"),
                     grid.Column("",
-                        format: item => Html.ActionLink("Edit", "AdministrateUserProfile", "Administration",
+                        format: item => Html.ActionLink("Edit", "EditPlanSelected", "Administration",
                             new { id = item.Id },
                             new { @class = "btn btn-default" })),
                     grid.Column("",
-                        format: item => Html.ActionLink("Delete", "AdministrateUserProfileDelete", "Administration",
+                        format: item => Html.ActionLink("Delete", "AdministratePlansDelete", "Administration",
                             new { id = item.Id },
                             new { @class = "btn btn-default" }))
                 )

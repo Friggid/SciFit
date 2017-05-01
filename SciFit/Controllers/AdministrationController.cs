@@ -24,6 +24,63 @@ namespace SciFit.Controllers
             return View(users);
         }
 
+        public ActionResult AdministratePlans()
+        {
+            var plans = new AdministrationModel();
+            var plansLogic = new PlanTemplate();
+
+            plans.Plans = plansLogic.GetPlanTemplate();
+
+            return View(plans);
+        }
+
+        public ActionResult EditPlanSelected(int id)
+        {
+            var planTemplate = new PlanTemplate();
+            var plan = planTemplate.GetPlanTemplateById(id);
+
+            return View(plan);
+        }
+
+        public ActionResult CreatePlan()
+        {
+            return View();
+        }
+
+        public ActionResult AdministratePlansCreate(PlanTemplateModel model)
+        {
+            var planTemplateLogic = new PlanTemplate();
+            var savedPlan = planTemplateLogic.PostPlanTemplate(model);
+
+            if (savedPlan != null)
+            {
+                return RedirectToAction("AdministratePlans", "Administration");
+            }
+
+            return RedirectToAction("AdministratePlans", "Administration");
+        }
+
+        public ActionResult AdministratePlansSave(PlanTemplateModel model)
+        {
+            var planTemplate = new PlanTemplate();
+            var savedPlan = planTemplate.PutPlanTemplate(model);
+
+            if (savedPlan != null)
+            {
+                return RedirectToAction("AdministratePlans", "Administration");
+            }
+
+            return RedirectToAction("AdministratePlans", "Administration");
+        }
+
+        public ActionResult AdministratePlansDelete(int id)
+        {
+            var planTemplate = new PlanTemplate();
+            planTemplate.DeletePlanTemplate(id);
+
+            return RedirectToAction("AdministratePlans", "Administration");
+        }
+
         public ActionResult AdministrateUserProfile(int id)
         {
             var user = new Users();
@@ -81,24 +138,6 @@ namespace SciFit.Controllers
             return View(viewModel);
         }
 
-        public ActionResult CreatePlan(int id, string pass)
-        {
-            var model = new PlanTemplateModel();
-            model.Id = id;
-            ViewBag.Id = id;
-            ViewBag.Pass = pass;
-            return View(model);
-        }
-
-        public ActionResult EditPlan(int id, string pass)
-        {
-            var temp = new PlanTemplate();
-            var allTemp = temp.GetPlanTemplate();
-            ViewBag.Id = id;
-            ViewBag.Pass = pass;
-            return View(allTemp);
-        }
-
         public ActionResult UserProfileSave(UserProfileViewModel model)
         {
             var user = new Users();
@@ -146,56 +185,6 @@ namespace SciFit.Controllers
                 return View("../Sport/Plan", userData);
             }
             return RedirectToAction("UserProfile", "Administration", model.Id);
-        }
-
-        public ActionResult CreatePlanCreate(PlanTemplateModel model)
-        {
-            int userId = model.Id;
-            model.Id = 0;
-
-            var modelData = new PlanTemplateModel();
-            modelData.Id = userId;
-            ViewBag.Id = userId;
-            return View("CreatePlan", modelData);
-        }
-
-        public ActionResult CreatePlanCancel(int id, string pass)
-        {
-            var user = new Users();
-            var userGet = user.GetUser(id);
-            userGet.Password = pass;
-            return RedirectToAction("Login", "Sport", userGet);
-        }
-
-        public ActionResult EditPlanSelected(int id, int userId, string pass)
-        {
-            var temp = new PlanTemplate();
-            var tempGet = temp.GetPlanTemplateById(id);
-            var model = new TemplateViewModel
-            {
-                Id = tempGet.Id,
-                Name = tempGet.Name,
-                Reps = tempGet.Reps,
-                Image = tempGet.Image,
-                Instructions = tempGet.Instructions,
-                Level = tempGet.Level,
-                Done = tempGet.Done,
-                UserId = userId,
-                Pass = pass
-            };
-            ViewBag.Id = userId;
-            ViewBag.Pass = pass;
-            return View(model);
-        }
-
-        public ActionResult SelectedPlanChanged(TemplateViewModel model)
-        {
-            var temp = new PlanTemplate();
-            var allTemp = temp.GetPlanTemplate();
-
-            ViewBag.Id = model.UserId;
-
-            return View("EditPlan", allTemp);
         }
     }
 }

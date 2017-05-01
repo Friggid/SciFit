@@ -50,6 +50,7 @@
                             @Html.ActionLink("Edit Profile", "UserProfile", "Administration",
                                 new { id = sessionData.User.Id, pass = sessionData.User.Password }, null)
                         </li>
+                        <li>@Html.ActionLink("Statistics", "UserProfile", "Administration")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Administration")</li>
                         @RenderSection("styles", false)
                     </ul>

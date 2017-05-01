@@ -249,10 +249,10 @@
     <Content Include="Views\Sport\Plan.cshtml" />
     <Content Include="Views\Administration\UserProfile.cshtml" />
     <Content Include="Views\Administration\CreatePlan.cshtml" />
-    <Content Include="Views\Administration\EditPlan.cshtml" />
     <Content Include="Views\Administration\EditPlanSelected.cshtml" />
     <Content Include="Views\Administration\AdminPanel.cshtml" />
     <Content Include="Views\Administration\AdministrateUserProfile.cshtml" />
+    <Content Include="Views\Administration\AdministratePlans.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

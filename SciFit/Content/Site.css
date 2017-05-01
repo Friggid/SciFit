@@ -40,19 +40,19 @@ textarea {
     width: 100%;
     display: table;
     border-collapse: separate;
-    border: solid 1px #98BF21;
+    border: solid 1px #c6dcff;
     background-color: white;
 }
 
 .webgrid-table td, th
 {
-    border: 1px solid #98BF21;
+    border: 1px solid #c6dcff;
     padding: 3px 7px 2px;
 }
 
 .webgrid-header
 {
-    background-color: #A7C942;
+    background-color: #c6dcff;
     color: #FFFFFF;
     padding-bottom: 4px;
     padding-top: 5px;
@@ -70,6 +70,6 @@ textarea {
 
 .webgrid-alternating-row
 {
-    background-color: #EAF2D3;
+    background-color: #d8e7ff;
     padding: 3px 7px 2px;
 }
