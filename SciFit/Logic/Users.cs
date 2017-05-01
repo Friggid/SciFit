@@ -72,6 +72,15 @@ namespace SciFit.Logic
             }
         }
 
+        public bool DeleteUser(int id)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.DeleteAsync("http://localhost:64483/api/Users/" + id).Result;
+                return response.IsSuccessStatusCode;
+            }
+        }
+
         public UserModel UserLogin(string userName, string password)
         {
             var hashedPass = password;

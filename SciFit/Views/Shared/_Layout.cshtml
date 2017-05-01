@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using SciFit.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -15,20 +16,62 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">SciFit</a>
             </div>
+            @{
+                var sessionData = (SportNutritionPlanModel)Session["UserData"];
+            }
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Login", "Login", "Authentication")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Authentication")</li>
-                    @RenderSection("styles", false)
-                </ul>
-            </div><!-- /.navbar-collapse -->
+            @if (sessionData == null)
+            {
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Login", "Login", "Authentication")</li>
+                        <li>@Html.ActionLink("Register", "Register", "Authentication")</li>
+                        @RenderSection("styles", false)
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            }
+            else if (sessionData.User.RoleId == 1)
+            {
+                //User
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Edit Profile", "UserProfile", "Administration",
+                                new { id = sessionData.User.Id, pass = sessionData.User.Password }, null)
+                        </li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Administration")</li>
+                        @RenderSection("styles", false)
+                    </ul>
+                </div>
+            }
+            else if (sessionData.User.RoleId == 2)
+            {
+                //Admin
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Admin panel", "AdminPanel", "Administration")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Administration")</li>
+                        @RenderSection("styles", false)
+                    </ul>
+                </div>
+            }
+
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container body-content">
@@ -37,6 +80,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/plan.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

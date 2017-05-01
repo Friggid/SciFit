@@ -52,9 +52,16 @@ namespace SciFit.Controllers
                     userData.SportPlan = sportPlan.PostSportPlan(loggedInData.Id, 1).Sport;// temp fix lvl nr 1
                 }
                 ViewBag.Id = userData.User.Id;
+
                 Session["UserData"] = userData;
+
+                if (userData.User.RoleId == 2)
+                {
+                    return RedirectToAction("AdminPanel", "Administration");
+                }
                 return View("Plan", userData);
             }
+
             TempData["badPassword"] = "Username/Password is incorrect!";
             return RedirectToAction("Login", "Authentication");
         }

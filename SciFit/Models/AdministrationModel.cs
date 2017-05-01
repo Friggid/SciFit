@@ -1,9 +1,9 @@
-﻿using System.Web.UI.WebControls;
+﻿using System.Collections.Generic;
 
 namespace SciFit.Models
 {
     public class AdministrationModel
     {
-        public int RoleId { get; set; }
+        public List<UserModel> Users { get; set; }
     }
 }

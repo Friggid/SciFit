@@ -18,24 +18,6 @@
                 </div>
             </div>
 
-            <div class="row" style="padding-bottom: 20px">
-                <div class="card-info col-md-4">
-                    @Html.ActionLink("Edit Profile", "UserProfile", "Administration",
-                        new { id = Model.User.Id, pass = Model.User.Password },
-                        new { @class = "btn btn-info", style = "display:block;margin: 0 auto;" })
-                </div>
-                <div class="card-info col-md-4">
-                    @Html.ActionLink("Admin Create", "CreatePlan", "Administration",
-                        new { id = Model.User.Id, pass = Model.User.Password },
-                        new { @class = "btn btn-warning", style = "display:block;margin: 0 auto;" })
-                </div>
-                <div class="card-info col-md-4">
-                    @Html.ActionLink("Admin Edit", "EditPlan", "Administration",
-                        new { id = Model.User.Id, pass = Model.User.Password },
-                        new { @class = "btn btn-info", style = "display:block;margin: 0 auto;" })
-                </div>
-            </div>
-
             <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                     <button style="min-height: 5em" type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab">
@@ -149,7 +131,3 @@
         </div>
     </div>
 </div>
-
-@section Scripts{
-    <script src="@Url.Content(" ~/Scripts/plan.js")"></script>
-}

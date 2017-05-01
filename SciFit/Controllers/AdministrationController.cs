@@ -1,4 +1,5 @@
-﻿using System.Web.Configuration;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using SciFit.Logic;
 using SciFit.Models;
@@ -7,25 +8,54 @@ namespace SciFit.Controllers
 {
     public class AdministrationController : Controller
     {
-        public ActionResult MainPanel(int roleId)
+        public ActionResult Logout()
         {
-            ViewBag.RoleId = roleId;
-            return View();
+            Session["UserData"] = null;
+            return RedirectToAction("Login", "Authentication");
         }
 
-        public ActionResult NavigateBackToProfile()
+        public ActionResult AdminPanel()
         {
-            return RedirectToAction("SportPlan", "Sport");
+            var users = new AdministrationModel();
+            var usersLogic = new Users();
+
+            users.Users = usersLogic.GetUsers();
+
+            return View(users);
         }
 
-        public ActionResult AdminPartial()
+        public ActionResult AdministrateUserProfile(int id)
         {
-            return View();
+            var user = new Users();
+            var model = user.GetUser(id);
+
+            return View(model);
         }
 
-        public ActionResult AdmininstratePlan()
+        public ActionResult AdministrateUserProfileSave(UserModel model)
         {
-            return PartialView("AdminPlansPartial");
+            var user = new Users();
+            var savedUser = user.PutUser(model.Id, model);
+
+            if (savedUser != null)
+            {
+                return RedirectToAction("AdminPanel", "Administration");
+            }
+
+            return RedirectToAction("AdministrateUserProfile", "Administration", model.Id);
+        }
+
+        public ActionResult AdministrateUserProfileDelete(int id)
+        {
+            var user = new Users();
+            var userDeleted = user.DeleteUser(id);
+
+            if (userDeleted)
+            {
+                return RedirectToAction("AdminPanel", "Administration");
+            }
+
+            return RedirectToAction("AdminPanel", "Administration");
         }
 
         public ActionResult UserProfile(int id, string pass)
@@ -114,18 +144,14 @@ namespace SciFit.Controllers
                 };
 
                 return View("../Sport/Plan", userData);
-                //return RedirectToAction("Login", "Sport", newModel);
             }
             return RedirectToAction("UserProfile", "Administration", model.Id);
         }
 
         public ActionResult CreatePlanCreate(PlanTemplateModel model)
         {
-            var user = new Users();
-            var temp = new PlanTemplate();
             int userId = model.Id;
             model.Id = 0;
-            var planTemp = temp.PostPlanTemplate(model);
 
             var modelData = new PlanTemplateModel();
             modelData.Id = userId;
@@ -143,7 +169,6 @@ namespace SciFit.Controllers
 
         public ActionResult EditPlanSelected(int id, int userId, string pass)
         {
-            var user = new Users();
             var temp = new PlanTemplate();
             var tempGet = temp.GetPlanTemplateById(id);
             var model = new TemplateViewModel
@@ -165,24 +190,11 @@ namespace SciFit.Controllers
 
         public ActionResult SelectedPlanChanged(TemplateViewModel model)
         {
-            var user = new Users();
             var temp = new PlanTemplate();
-
-            var model1 = new PlanTemplateModel
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Reps = model.Reps,
-                Image = model.Image,
-                Instructions = model.Instructions,
-                Level = model.Level,
-                Done = model.Done
-            };
-
-            var planTemp = temp.PutPlanTemplate(model1);
-
             var allTemp = temp.GetPlanTemplate();
+
             ViewBag.Id = model.UserId;
+
             return View("EditPlan", allTemp);
         }
     }

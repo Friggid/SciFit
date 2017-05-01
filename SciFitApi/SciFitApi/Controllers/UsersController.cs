@@ -89,6 +89,23 @@ namespace SciFitApi.Controllers
             return Ok(user);
         }
 
+        public IHttpActionResult DeleteUser(int id)
+        {
+            var user = (from x in _db.Users
+                        where x.Id == id
+                        select x).SingleOrDefault();
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _db.Entry(user).State = EntityState.Deleted;
+
+            _db.SaveChanges();
+            return Ok();
+        }
+
         #region Private helpers
         private string HashPass(string pass)
         {
