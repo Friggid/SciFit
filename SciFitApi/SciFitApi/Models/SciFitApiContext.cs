@@ -23,5 +23,7 @@ namespace SciFitApi.Models
         public DbSet<SportModel> Sport { get; set; }
 
         public DbSet<SportPlanModel> SportCollection { get; set; }
+
+        public DbSet<StatisticsModel> Statistics { get; set; }
     }
 }
