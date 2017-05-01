@@ -94,5 +94,20 @@ namespace SciFit.Controllers
 
             return View("Plan", userData);
         }
+
+        public ActionResult Statistics()
+        {
+            var model = (SportNutritionPlanModel)Session["UserData"];
+
+            var statisticsLogic = new Statistics();
+            var statisticsModel = statisticsLogic.GetStatisticsById(model.User.Id);
+
+            if (statisticsModel != null)
+            {
+                return View(statisticsModel);
+            }
+
+            return RedirectToAction("Plan", "Sport");
+        }
     }
 }
