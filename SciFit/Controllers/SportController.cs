@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using SciFit.Logic;
 using SciFit.Models;
+using System;
 
 namespace SciFit.Controllers
 {
@@ -22,11 +23,27 @@ namespace SciFit.Controllers
             userModel.User.Difficulty = userModel.Difficulty;
 
             var users = new Users();
-
-            if (!users.PostUser(userModel.User))
+            var user = users.PostUser(userModel.User);
+            if (user == null)
             {
                 return RedirectToAction("Register", "Authentication");
             }
+
+            var statisticLogic = new Statistics();
+            var statisticModel = new StatisticsModel
+            {
+                UserId = user.Id,
+                DoneCount = 0,
+                StartDate = DateTime.Now,
+                CurrentLvl = 1
+            };
+            statisticModel = statisticLogic.PostStatistics(statisticModel);
+
+            if(statisticModel == null)
+            {
+                return RedirectToAction("Register", "Authentication");
+            }
+
             return RedirectToAction("Login", "Authentication");
         }
 
@@ -77,6 +94,7 @@ namespace SciFit.Controllers
             var generatePlan = new GeneratePlan();
             var user = new Users();
             var sportPlan = new SportPlan();
+            var statisticLogic = new Statistics();
 
             var loggedInData = user.GetUser(id);
 
@@ -90,7 +108,13 @@ namespace SciFit.Controllers
             {
                 sportPlan.DeleteSportPlan(id);
                 userData.SportPlan = sportPlan.PostSportPlan(id, lvl + 1).Sport;
+
             }
+            var statisticsModel = statisticLogic.GetStatisticsById(userData.User.Id);
+
+            statisticsModel.CurrentLvl = lvl;
+            statisticsModel.DoneCount += 1;
+            statisticsModel = statisticLogic.PutStatistics(statisticsModel);
 
             return View("Plan", userData);
         }

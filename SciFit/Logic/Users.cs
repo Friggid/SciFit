@@ -58,8 +58,9 @@ namespace SciFit.Logic
             }
         }
 
-        public bool PostUser(UserModel model)
+        public UserModel PostUser(UserModel model)
         {
+            UserModel result = null;
             using (var httpClient = new HttpClient())
             {
                 var json = JsonConvert.SerializeObject(model);
@@ -68,7 +69,13 @@ namespace SciFit.Logic
 
                 var response = httpClient.PostAsync("http://localhost:64483/api/Users/", content).Result;
 
-                return response.IsSuccessStatusCode;
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResult = response.Content.ReadAsStringAsync().Result;
+
+                    result = JsonConvert.DeserializeObject<UserModel>(jsonResult);
+                }
+                return result;
             }
         }
 
