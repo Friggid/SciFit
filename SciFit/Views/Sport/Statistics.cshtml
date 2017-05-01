@@ -1,0 +1,26 @@
+﻿@model SciFit.Models.StatisticsModel
+<div class="container">
+    <div class="col-lg-12 col-sm-12">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 text-center" style="float: none; margin: auto">
+                <h2><b>Statistics</b></h2>
+                <hr />
+                    <h4>Start date</h4>
+                    <p>Date: @Model.StartDate</p>
+                <hr />
+                    <h4>Done count</h4>
+                    <p>Exercises: @Model.DoneCount</p>
+                <hr />
+                    <h4>Current level</h4>
+                    <p>Level: @Model.CurrentLvl</p>
+                <hr />
+                <div class="row" style="display: flex; justify-content: center">
+                    <div class="col-md-12">
+                        @Html.ActionLink("Cancel", "Plan", "Sport", null,
+                    new { @class = "btn btn-danger", style = "margin: 0 auto;" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
