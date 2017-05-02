@@ -89,25 +89,27 @@ namespace SciFit.Controllers
             return RedirectToAction("Login", "Authentication");
         }
 
-        public ActionResult UpdatePlan(int id, int sportId, int lvl)
+        public ActionResult UpdatePlan(int sportId, int lvl)
         {
+            var model = (SportNutritionPlanModel)Session["UserData"];
+
             var generatePlan = new GeneratePlan();
             var user = new Users();
             var sportPlan = new SportPlan();
             var statisticLogic = new Statistics();
 
-            var loggedInData = user.GetUser(id);
+            var loggedInData = user.GetUser(model.User.Id);
 
             var userData = new SportNutritionPlanModel
             {
-                SportPlan = sportPlan.PutSportDone(id, sportId).Sport,
+                SportPlan = sportPlan.PutSportDone(model.User.Id, sportId).Sport,
                 NutritionPlan = generatePlan.GenerateNutritionPlan(loggedInData),
                 User = loggedInData
             };
             if (userData.SportPlan.Count <= 0)
             {
-                sportPlan.DeleteSportPlan(id);
-                userData.SportPlan = sportPlan.PostSportPlan(id, lvl + 1).Sport;
+                sportPlan.DeleteSportPlan(model.User.Id);
+                userData.SportPlan = sportPlan.PostSportPlan(model.User.Id, lvl + 1).Sport;
 
             }
             var statisticsModel = statisticLogic.GetStatisticsById(userData.User.Id);
