@@ -112,6 +112,7 @@ namespace SciFit.Controllers
                 userData.SportPlan = sportPlan.PostSportPlan(model.User.Id, lvl + 1).Sport;
 
             }
+            Session["UserData"] = userData;
             var statisticsModel = statisticLogic.GetStatisticsById(userData.User.Id);
 
             statisticsModel.CurrentLvl = lvl;
