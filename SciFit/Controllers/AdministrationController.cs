@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using SciFit.Logic;
@@ -18,6 +19,15 @@ namespace SciFit.Controllers
         {
             var users = new AdministrationModel();
             var usersLogic = new Users();
+            var searchedUsers = (List<UserModel>)TempData["SearchedUsers"];
+
+            ViewBag.UserNotFound = TempData["UserNotFound"];
+
+            if (searchedUsers != null)
+            {
+                users.Users = searchedUsers;
+                return View(users);
+            }
 
             users.Users = usersLogic.GetUsers();
 
@@ -32,6 +42,61 @@ namespace SciFit.Controllers
             plans.Plans = plansLogic.GetPlanTemplate();
 
             return View(plans);
+        }
+
+        [HttpPost]
+        public ActionResult AdministrateUsersSearch(string searchKey)
+        {
+            var model = SearchPlan(searchKey);
+
+            TempData["SearchedUsers"] = model;
+
+            return RedirectToAction("AdminPanel", "Administration");
+        }
+
+        private List<UserModel> SearchPlan(string searchKey)
+        {
+            var users = new AdministrationModel();
+            var usersLogic = new Users();
+            var searchedUsers = new List<UserModel>();
+
+            users.Users = usersLogic.GetUsers();
+
+            foreach (var data in users.Users)
+            {
+                if (searchKey == "")
+                {
+                    searchedUsers = users.Users;
+                }
+                else
+                {
+                    if (data.UserName.Contains(searchKey))
+                    {
+                        searchedUsers.Add(new UserModel()
+                        {
+                            Id = data.Id,
+                            Email = data.Email,
+                            Password = data.Password,
+                            UserName = data.UserName,
+                            RoleId = data.RoleId,
+                            Age = data.Age,
+                            Difficulty = data.Difficulty,
+                            Weight = data.Weight,
+                            Height = data.Height,
+                            Name = data.Name,
+                            Address = data.Address,
+                            Surname = data.Surname
+                        });
+                    }
+                }
+            }
+
+            if (searchedUsers.Count == 0 || searchedUsers == null)
+            {
+                TempData["UserNotFound"] = true;
+            }
+
+            return searchedUsers;
         }
 
         public ActionResult EditPlanSelected(int id)

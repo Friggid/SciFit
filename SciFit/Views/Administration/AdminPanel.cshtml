@@ -1,5 +1,4 @@
 ﻿@model SciFit.Models.AdministrationModel
-
 @{
     var grid = new WebGrid(Model.Users, canPage: true, rowsPerPage: 10, defaultSort: "Id");
     grid.Pager(WebGridPagerModes.All);
@@ -12,7 +11,7 @@
     <div class="col-lg-12 col-sm-12">
 
         <div class="row" style="padding-bottom: 20px">
-            <div class="card-info col-md-6">
+            <div class="col-md-6">
                 @Html.ActionLink("Edit plans", "AdministratePlans", "Administration",
                     new
                     {
@@ -20,7 +19,7 @@
                         style = "display:block;margin: 0 auto; font-size: 14px;"
                     })
             </div>
-            <div class="card-info col-md-6">
+            <div class="col-md-6">
                 @Html.ActionLink("Create new sport plan", "CreatePlan", "Administration",
                     new
                     {
@@ -29,29 +28,65 @@
                     })
             </div>
         </div>
+        @using (Html.BeginForm("AdministrateUsersSearch", "Administration"))
+        {
+            <div class="row" style="padding-left: 15px; padding-bottom: 10px;">
+                @if (ViewBag.UserNotFound != null)
+                {
+                    if ((bool)ViewBag.UserNotFound)
+                    {
+                        <div class="row" style="padding-left: 15px;">
+                            <p class="text-danger">
+                                Users not found!
+                            </p>
+                        </div>
+                    }
+                }
+                <table style="border: 0">
+                    <tr>
+                        <td align="right">
+                            @Html.TextBox("SearchKey", "", new { style = "min-height: 40px" })
+                        </td>
+                        @if (ViewBag.UserNotFound != null)
+                        {
+                            <td align="left" style="padding-left: 10px;">
+                                <button type="submit" class="btn btn-danger" style="min-width: 70px; max-height: 40px;">Refresh</button>
+                            </td>
+                        }
+                        else
+                        {
+                            <td align="left" style="padding-left: 10px; ">
+                                <button type="submit" class="btn btn-info" style="min-width: 70px; max-height: 40px;">Search</button>
+                            </td>
+                        }
 
-        <div id="gridContent">
-            @grid.GetHtml(
-                tableStyle: "webgrid-table",
-                headerStyle: "webgrid-header",
-                footerStyle: "webgrid-footer",
-                alternatingRowStyle: "webgrid-alternating-row",
-                selectedRowStyle: "webgrid-selected-row",
-                rowStyle: "webgrid-row-style",
-                mode: WebGridPagerModes.All,
-                columns: grid.Columns(
-                    grid.Column("UserName", header: "Username"),
-                    grid.Column("Email", header: "Email"),
-                    grid.Column("",
-                        format: item => Html.ActionLink("Edit", "AdministrateUserProfile", "Administration",
-                            new { id = item.Id },
-                            new { @class = "btn btn-default" })),
-                    grid.Column("",
-                        format: item => Html.ActionLink("Delete", "AdministrateUserProfileDelete", "Administration",
-                            new { id = item.Id },
-                            new { @class = "btn btn-default" }))
+                    </tr>
+                </table>
+            </div>
+            <div id="gridContent">
+                @grid.GetHtml(
+                    tableStyle: "webgrid-table",
+                    headerStyle: "webgrid-header",
+                    footerStyle: "webgrid-footer",
+                    alternatingRowStyle: "webgrid-alternating-row",
+                    selectedRowStyle: "webgrid-selected-row",
+                    rowStyle: "webgrid-row-style",
+                    mode: WebGridPagerModes.All,
+                    columns: grid.Columns(
+                        grid.Column("UserName", header: "Username"),
+                        grid.Column("Email", header: "Email"),
+                        grid.Column("",
+                            format: item => Html.ActionLink("Edit", "AdministrateUserProfile", "Administration",
+                                new { id = item.Id },
+                                new { @class = "btn btn-default" })),
+                        grid.Column("",
+                            format: item => Html.ActionLink("Delete", "AdministrateUserProfileDelete", "Administration",
+                                new { id = item.Id },
+                                new { @class = "btn btn-default" }))
+                    )
                 )
-            )
-        </div>
+            </div>
+        }
+
     </div>
 </div>
