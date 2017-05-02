@@ -10,7 +10,6 @@ namespace SciFit.Models
 
         public string Height { get; set; }
 
-        [Required(ErrorMessage = "Please select difficulty!")]
         public string Difficulty { get; set; }
 
         public UserModel User { get; set; }

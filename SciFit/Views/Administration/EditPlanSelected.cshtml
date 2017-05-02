@@ -7,7 +7,6 @@
         <div class="col-sm-6 col-sm-offset-3 text-center" style="float: none; margin: auto">
             @using (Html.BeginForm("AdministratePlansSave", "Administration"))
             {
-                <h4>Edit profile</h4>
                 <hr />
                 @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.Name,
