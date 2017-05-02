@@ -4,7 +4,9 @@
     var grid = new WebGrid(Model.Plans, canPage: true, rowsPerPage: 10, defaultSort: "Level");
     grid.Pager(WebGridPagerModes.All);
 }
-
+@section styles{
+    <link rel="Stylesheet" href=@Href("~/Content/Site.css") />
+}
 <div class="container">
     <div class="col-lg-12 col-sm-12">
 
