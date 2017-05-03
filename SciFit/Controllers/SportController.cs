@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using SciFit.Logic;
 using SciFit.Models;
 using System;
+using System.Net;
 
 namespace SciFit.Controllers
 {
@@ -135,6 +136,21 @@ namespace SciFit.Controllers
             }
 
             return RedirectToAction("Plan", "Sport");
+        }
+
+        public ActionResult LoadImg(int id)
+        {
+            byte[] content = null;
+            var userData = (SportNutritionPlanModel)Session["UserData"];
+            foreach(var item in userData.SportPlan)
+            {
+                if(item.Id == id)
+                {
+                    content = item.ImgContent;
+                }
+            }
+            return File(content, "image/jpg");
+
         }
     }
 }

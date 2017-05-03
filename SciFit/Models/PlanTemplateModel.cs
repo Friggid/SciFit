@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.Web;
 
 namespace SciFit.Models
 {
@@ -24,5 +26,7 @@ namespace SciFit.Models
         public int? Level { get; set; }
 
         public bool Done { get; set; }
+
+        public byte[] ImgContent { get; set; }
     }
 }

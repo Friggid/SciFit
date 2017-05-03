@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web.Mvc;
 using SciFit.Logic;
 using SciFit.Models;
+using System.Web;
+using System.IO;
 
 namespace SciFit.Controllers
 {
@@ -125,9 +127,26 @@ namespace SciFit.Controllers
             return RedirectToAction("AdministratePlans", "Administration");
         }
 
-        public ActionResult AdministratePlansSave(PlanTemplateModel model)
+        public ActionResult AdministratePlansSave(PlanTemplateModel model, HttpPostedFileBase file)
         {
+            if (file != null)
+            {
+                if (HasImageExtension(file.FileName))
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        using (var binaryReader = new BinaryReader(file.InputStream))
+                        {
+                            byte[] imageData = null;
+                            imageData = binaryReader.ReadBytes(file.ContentLength);
+                            model.ImgContent = imageData;
+                        }
+                    }
+                }
+            }
+
             var planTemplate = new PlanTemplate();
+
             var savedPlan = planTemplate.PutPlanTemplate(model);
 
             if (savedPlan != null)
@@ -138,6 +157,10 @@ namespace SciFit.Controllers
             return RedirectToAction("AdministratePlans", "Administration");
         }
 
+        private bool HasImageExtension(string source)
+        {
+            return (source.EndsWith(".png") || source.EndsWith(".jpg"));
+        }
         public ActionResult AdministratePlansDelete(int id)
         {
             var planTemplate = new PlanTemplate();

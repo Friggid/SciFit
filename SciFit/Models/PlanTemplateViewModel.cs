@@ -1,6 +1,11 @@
-﻿namespace SciFitApi.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace SciFit.Models
 {
-    public class SportTemplateModel
+    public class PlanTemplateViewModel
     {
         public int Id { get; set; }
 
@@ -16,6 +21,6 @@
 
         public bool Done { get; set; }
 
-        public byte[] ImgContent { get; set; }
+        public HttpPostedFileBase File { get; set; }
     }
 }

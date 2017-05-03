@@ -17,5 +17,7 @@
         public int Level { get; set; }
 
         public int Done { get; set; }
+
+        public byte[] ImgContent { get; set; }
     }
 }
