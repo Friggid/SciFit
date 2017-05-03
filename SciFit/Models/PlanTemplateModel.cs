@@ -19,7 +19,7 @@ namespace SciFit.Models
         public string Image { get; set; }
 
         [Required(ErrorMessage = "Instructions are required!")]
-        [StringLength(20, MinimumLength = 3, ErrorMessage = "Must be between 3 and 20 characters!")]
+        [StringLength(255, MinimumLength = 3, ErrorMessage = "Must be between 3 and 255 characters!")]
         public string Instructions { get; set; }
 
         [Required(ErrorMessage = "Level is required!")]
