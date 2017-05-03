@@ -1,15 +1,19 @@
 ﻿@model SciFit.Models.PlanTemplateModel
 @section styles{
-<link rel="Stylesheet" href="@Href(" ~/Content/Site.css")" />
+<link rel="Stylesheet" href=@Href("~/Content/Site.css")/>
 }
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3 text-center" style="float: none; margin: auto">
-            @using (Html.BeginForm("AdministratePlansSave", "Administration"))
+            @using (Html.BeginForm("AdministratePlansSave", "Administration", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <h4>Edit exercise: @Model.Name</h4>
                 <hr />
-                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+
+                @*@Html.TextBoxFor(m => m.file, new { type = "file" name = "file"})*@
+                <input type="file" name="file" />
+
+                   @Html.ValidationMessageFor(m=> m.Name, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.Name,
                     new
                     {
@@ -61,6 +65,7 @@
                 <hr />
 
                 @Html.HiddenFor(userModel => userModel.Id)
+                @Html.HiddenFor(userModel => userModel.ImgContent)
                 @*@Html.HiddenFor(userModel => userModel.UserId)
                 @Html.HiddenFor(userModel => userModel.Pass)*@
 
@@ -78,7 +83,6 @@
         </div>
     </div>
 </div>
-
 @section Scripts
 {
     @Scripts.Render("~/bundles/jquery")

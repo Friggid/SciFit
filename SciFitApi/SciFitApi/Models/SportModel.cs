@@ -25,6 +25,8 @@ namespace SciFitApi.Models
 
         public int Done { get; set; }
 
+        public byte[] ImgContent { get; set; }
+
         [JsonIgnore]
         [IgnoreDataMember]
         public virtual SportPlanModel SportPlan { get; set; }
