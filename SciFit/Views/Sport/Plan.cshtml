@@ -3,7 +3,7 @@
     ViewBag.Title = "Sport";
 }
 @section styles{
-<link rel="Stylesheet" href="@Href(" ~/Content/Plan.css")" />
+    <link rel="Stylesheet" href="@Href(" ~/Content/Plan.css")" />
 }
 <div class="container">
     <div class="center-block">
@@ -42,10 +42,11 @@
                                 {
                                     <div class="col-md-4" style="text-align: center">
                                         <div class="thumbnail">
-                                            @if(item.ImgContent != null && item.ImgContent.Length > 0)
+                                            @if (item.ImgContent != null && item.ImgContent.Length > 0)
                                             {
                                                 <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
-                                            }else
+                                            }
+                                            else
                                             {
                                                 <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
                                             }
@@ -60,7 +61,7 @@
                                                     <p>Repetitions: @item.Reps</p>
                                                 </div>
                                                 <div>
-                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level}, new {@class = "btn btn-info"})
+                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new { sportId = item.Id, lvl = item.Level }, new { @class = "btn btn-info" })
                                                 </div>
                                             </div>
                                         </div>
@@ -70,10 +71,11 @@
                                 {
                                     <div class="col-md-6" style="text-align: center">
                                         <div class="thumbnail">
-                                            @if(item.ImgContent != null && item.ImgContent.Length > 0)
+                                            @if (item.ImgContent != null && item.ImgContent.Length > 0)
                                             {
                                                 <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
-                                            }else
+                                            }
+                                            else
                                             {
                                                 <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
                                             }
@@ -83,16 +85,35 @@
                                                 </div>
                                                 <div style="min-height: 50px">
                                                     <p>@item.Instructions</p>
-                                                    <div id="vid">
-                                                        <iframe width="236" height="105" src="//www.youtube.com/embed/AGg3u03JPfk" frameborder="0" allowfullscreen></iframe>
-                                                    </div>
                                                 </div>
                                                 <div>
                                                     <p>Repetitions: @item.Reps</p>
                                                 </div>
-                                                <div>
-                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level}, new {@class = "btn btn-info"})
+
+                                                <div class="row" style="display: flex; justify-content: center;">
+                                                    <div class="col-md-3">
+                                                        <button id="myBtn" class="btn btn-info">Instructions</button>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            @Html.ActionLink("Completed", "UpdatePlan", "Sport", new { sportId = item.Id, lvl = item.Level },
+                                                                new
+                                                                {
+                                                                    @class = "btn btn-info"
+                                                                })
+                                                        </div>
+                                                    </div>
                                                 </div>
+
+                                                <!-- The Modal -->
+                                                <div id="myModal" class="modal col-md-12">
+                                                    <!-- Modal content -->
+                                                    <div class="modal-content" style="min-height: 300px; min-width: 350px;">
+                                                        <span class="close">&times;</span>
+                                                        <iframe style="margin: 0; width: 100%; min-height: 300px" src="//www.youtube.com/embed/AGg3u03JPfk" frameborder="0" allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -101,10 +122,11 @@
                                 {
                                     <div class="col-md-12 " style="text-align: center">
                                         <div class="thumbnail">
-                                            @if(item.ImgContent != null && item.ImgContent.Length > 0)
+                                            @if (item.ImgContent != null && item.ImgContent.Length > 0)
                                             {
                                                 <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
-                                            }else
+                                            }
+                                            else
                                             {
                                                 <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
                                             }
@@ -151,3 +173,36 @@
         </div>
     </div>
 </div>
+@section Scripts
+{
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "flex";
+            modal.style.justifyContent = "center";
+            modal.style.alignItems = "center";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+}
+
