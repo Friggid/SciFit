@@ -72,7 +72,7 @@ namespace SciFit.Controllers
                 }
                 else
                 {
-                    if (data.UserName.Contains(searchKey))
+                    if (data.UserName.Contains(searchKey) || data.Email.Contains(searchKey))
                     {
                         searchedUsers.Add(new UserModel()
                         {

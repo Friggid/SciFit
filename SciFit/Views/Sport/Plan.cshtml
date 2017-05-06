@@ -38,12 +38,17 @@
                         <div class="row">
                             @foreach (var item in Model.SportPlan)
                             {
-<!--<<<<<<< HEAD
                                 if (Model.SportPlan.Count > 2)
                                 {
                                     <div class="col-md-4" style="text-align: center">
                                         <div class="thumbnail">
-                                            <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                            @if(item.ImgContent != null && item.ImgContent.Length > 0)
+                                            {
+                                                <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
+                                            }else
+                                            {
+                                                <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                            }
                                             <div class="caption">
                                                 <div>
                                                     <h3>@item.Name</h3>
@@ -55,7 +60,7 @@
                                                     <p>Repetitions: @item.Reps</p>
                                                 </div>
                                                 <div>
-                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level}, new {@class = "btn btn-success"})
+                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level}, new {@class = "btn btn-info"})
                                                 </div>
                                             </div>
                                         </div>
@@ -65,19 +70,28 @@
                                 {
                                     <div class="col-md-6" style="text-align: center">
                                         <div class="thumbnail">
-                                            <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                            @if(item.ImgContent != null && item.ImgContent.Length > 0)
+                                            {
+                                                <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
+                                            }else
+                                            {
+                                                <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                            }
                                             <div class="caption">
                                                 <div>
                                                     <h3>@item.Name</h3>
                                                 </div>
                                                 <div style="min-height: 50px">
                                                     <p>@item.Instructions</p>
+                                                    <div id="vid">
+                                                        <iframe width="236" height="105" src="//www.youtube.com/embed/AGg3u03JPfk" frameborder="0" allowfullscreen></iframe>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <p>Repetitions: @item.Reps</p>
                                                 </div>
                                                 <div>
-                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level}, new {@class = "btn btn-success" })
+                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level}, new {@class = "btn btn-info"})
                                                 </div>
                                             </div>
                                         </div>
@@ -87,7 +101,13 @@
                                 {
                                     <div class="col-md-12 " style="text-align: center">
                                         <div class="thumbnail">
-                                            <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                            @if(item.ImgContent != null && item.ImgContent.Length > 0)
+                                            {
+                                                <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
+                                            }else
+                                            {
+                                                <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                            }
                                             <div class="caption">
                                                 <div>
                                                     <h3>@item.Name</h3>
@@ -99,95 +119,12 @@
                                                     <p>Repetitions: @item.Reps</p>
                                                 </div>
                                                 <div>
-                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new { sportId = item.Id, lvl = item.Level }, new { @class = "btn btn-success" })
+                                                    @Html.ActionLink("Completed", "UpdatePlan", "Sport", new { sportId = item.Id, lvl = item.Level }, new { @class = "btn btn-info" })
                                                 </div>
                                             </div>
-=======-->
-                            if (Model.SportPlan.Count > 2)
-                            {
-                            <div class="col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    @if(item.ImgContent != null && item.ImgContent.Length > 0)
-                                    {
-                                    <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
-                                    }else
-                                    {
-                                    <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
-                                    }
-                                    <div class="caption">
-                                        <div>
-                                            <h3>@item.Name</h3>
-                                        </div>
-                                        <div style="min-height: 50px">
-                                            <p>@item.Instructions</p>
-                                        </div>
-                                        <div>
-                                            <p>Repetitions: @item.Reps</p>
-                                        </div>
-                                        <div>
-                                            @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level}, new {@class = "btn btn-info"})
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            }
-                            else if (Model.SportPlan.Count == 2)
-                            {
-                            <div class="col-md-6" style="text-align: center">
-                                <div class="thumbnail">
-                                    @if(item.ImgContent != null && item.ImgContent.Length > 0)
-                                    {
-                                    <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
-                                    }else
-                                    {
-                                    <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
-                                    }
-                                    <div class="caption">
-                                        <div>
-                                            <h3>@item.Name</h3>
-                                        </div>
-                                        <div style="min-height: 50px">
-                                            <p>@item.Instructions</p>
-                                        </div>
-                                        <div>
-                                            <p>Repetitions: @item.Reps</p>
-                                        </div>
-                                        <div>
-                                            @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level}, new {@class = "btn btn-info"})
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            }
-                            else
-                            {
-                            <div class="col-md-12 " style="text-align: center">
-                                <div class="thumbnail">
-                                    @if(item.ImgContent != null && item.ImgContent.Length > 0)
-                                    {
-                                    <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
-                                    }else
-                                    {
-                                    <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
-                                    }
-                                    <div class="caption">
-                                        <div>
-                                            <h3>@item.Name</h3>
-                                        </div>
-                                        <div style="min-height: 50px">
-                                            <p>@item.Instructions</p>
-                                        </div>
-                                        <div>
-                                            <p>Repetitions: @item.Reps</p>
-                                        </div>
-                                        <div>
-                                            @Html.ActionLink("Completed", "UpdatePlan", "Sport", new { sportId = item.Id, lvl = item.Level }, new { @class = "btn btn-info" })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            }
-
+                                }
                             }
                         </div>
                     </div>
@@ -195,17 +132,17 @@
                         <div class="row">
                             @foreach (var item in Model.NutritionPlan)
                             {
-                            <div class="col-sm-6 col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
-                                    <div class="caption">
-                                        <h3>@item.Name</h3>
-                                        <p>@item.Calories kCal</p>
-                                        <p>@item.Weight</p>
-                                        <p>@item.Price</p>
+                                <div class="col-sm-6 col-md-4" style="text-align: center">
+                                    <div class="thumbnail">
+                                        <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                        <div class="caption">
+                                            <h3>@item.Name</h3>
+                                            <p>@item.Calories kCal</p>
+                                            <p>@item.Weight</p>
+                                            <p>@item.Price</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             }
                         </div>
                     </div>

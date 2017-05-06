@@ -74,6 +74,7 @@
                     mode: WebGridPagerModes.All,
                     columns: grid.Columns(
                         grid.Column("UserName", header: "Username"),
+                        grid.Column("RoleId", header: "Role"),
                         grid.Column("Email", header: "Email"),
                         grid.Column("",
                             format: item => Html.ActionLink("Edit", "AdministrateUserProfile", "Administration",
@@ -82,11 +83,18 @@
                         grid.Column("",
                             format: item => Html.ActionLink("Delete", "AdministrateUserProfileDelete", "Administration",
                                 new { id = item.Id },
-                                new { @class = "btn btn-default" }))
+                                new { @class = "delete btn btn-default"}))
+                        )
                     )
-                )
             </div>
         }
-
     </div>
 </div>
+@section Scripts
+{
+    <script>
+        $(".delete").click(function () {
+            alert('Do you really want to proceed with deletion?');
+        });
+    </script>
+}
