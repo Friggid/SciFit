@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using AutoMapper;
 using SciFitApi.Models;
+using System;
 
 namespace SciFitApi.Controllers
 {
@@ -72,6 +73,7 @@ namespace SciFitApi.Controllers
             return Ok(sportPlan);
         }
 
+        //first create
         //POST api/SportCollection
         [ResponseType(typeof(SportPlanModel))]
         public IHttpActionResult PostSport(int id, int? level)
@@ -80,24 +82,56 @@ namespace SciFitApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var sportPlan = (from x in _db.SportTemplate
-                             where x.Level == level
-                             select x).ToList();
+            var highestLvl = (from x in _db.SportTemplate
+                             select x).Max(x => x.Level);
 
-            if (sportPlan.Count == 0)
+            List<SportTemplateModel> sportPlan;
+            List<SportModel> sportMapped;
+            List<SportModel> fullList = new List<SportModel>();
+            DateTime start = DateTime.Now;
+            if (highestLvl != null)
             {
-                sportPlan = (from x in _db.SportTemplate
-                             where x.Level == level-1
-                             select x).ToList();
+                for(int i = 1; i < highestLvl+1; i++)
+                {
+                    sportPlan = (from x in _db.SportTemplate
+                                 where x.Level == i
+                                 select x).ToList();
+                    sportMapped = Mapper.Map<List<SportModel>>(sportPlan);
+                    foreach (var item in sportMapped)
+                    {
+                        item.StartDate = start;
+                        item.EndDate = start.AddDays(1);
+                        fullList.Add(item);
+                    }
+                    start.AddDays(1);
+                }
             }
 
+            //change
+            //sportPlan = (from x in _db.SportTemplate
+            //                 where x.Level == level
+            //                 select x).ToList();
 
-            var sportMapped = Mapper.Map<List<SportModel>>(sportPlan);
+            //if (sportPlan.Count == 0)
+            //{
+            //    sportPlan = (from x in _db.SportTemplate
+            //                 where x.Level == level-1
+            //                 select x).ToList();
+            //}
+
+
+            //sportMapped = Mapper.Map<List<SportModel>>(sportPlan);
+
+            //foreach (var item in sportMapped)
+            //{
+            //    item.StartDate = DateTime.Now;
+            //    item.EndDate = DateTime.Now.AddDays(1);
+            //}
 
             var sportCollection = new SportPlanModel
             {
                 UserId = id,
-                Sport = sportMapped
+                Sport = fullList
             };
 
             _db.Entry(sportCollection).State = EntityState.Added;

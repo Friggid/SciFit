@@ -22,7 +22,11 @@ namespace SciFitApi.App_Start
                 .ForMember
                 (dest => dest.Done, opts => opts.MapFrom(src => src.Done))
                 .ForMember
-                (dest => dest.ImgContent, opts => opts.MapFrom(src => src.ImgContent));
+                (dest => dest.ImgContent, opts => opts.MapFrom(src => src.ImgContent))
+                .ForMember
+                (dest => dest.StartDate, opts => opts.MapFrom(src => src.StartDate))
+                .ForMember
+                (dest => dest.EndDate, opts => opts.MapFrom(src => src.EndDate));
             });
 
         }

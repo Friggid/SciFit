@@ -64,7 +64,8 @@ namespace SciFitApi.Models
                         Image = "https://www.bodybuilding.com/exercises/exerciseImages/sequences/2001/Male/m/2001_1.jpg",
                         Instructions = "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių.",
                         Level = 1,
-                        Done = false
+                        Done = false,
+                        StartDate = DateTime.Now
                     },
                     new SportTemplateModel
                     {
@@ -73,7 +74,8 @@ namespace SciFitApi.Models
                         Image = "http://pasmama.tv3.lt/uploads/editor/image/1%281%29.jpg",
                         Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite.",
                         Level = 1,
-                        Done = false
+                        Done = false,
+                        StartDate = DateTime.Now
                     },
                     new SportTemplateModel
                     {
@@ -83,7 +85,8 @@ namespace SciFitApi.Models
                         Instructions =
                             "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių.",
                         Level = 2,
-                        Done = false
+                        Done = false,
+                        StartDate = DateTime.Now
                     },
                     new SportTemplateModel
                     {
@@ -92,7 +95,8 @@ namespace SciFitApi.Models
                         Image = "http://pasmama.tv3.lt/uploads/editor/image/1%281%29.jpg",
                         Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite.",
                         Level = 2,
-                        Done = false
+                        Done = false,
+                        StartDate = DateTime.Now
                     },
                     new SportTemplateModel
                     {
@@ -101,7 +105,8 @@ namespace SciFitApi.Models
                         Image = "https://www.bodybuilding.com/exercises/exerciseImages/sequences/2001/Male/m/2001_1.jpg",
                         Instructions = "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių.",
                         Level = 3,
-                        Done = false
+                        Done = false,
+                        StartDate = DateTime.Now
                     },
                     new SportTemplateModel
                     {
@@ -110,7 +115,8 @@ namespace SciFitApi.Models
                         Image = "http://pasmama.tv3.lt/uploads/editor/image/1%281%29.jpg",
                         Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite.",
                         Level = 3,
-                        Done = false
+                        Done = false,
+                        StartDate = DateTime.Now
                     }
             };
             sportPlan.ForEach(x => context.SportTemplate.Add(x));
