@@ -6,83 +6,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SportPlan</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render((string)Session["CustomTheme"])
 </head>
 <body>
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">SciFit</a>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">SciFit</a>
+        </div>
+        @{
+            var sessionData = (SportNutritionPlanModel)Session["UserData"];
+        }
+
+        @if (sessionData == null)
+        {
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Theme
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Default", "ChangeTheme", "Home", new { theme = "~/Content/default-theme" }, null)</li>
+                            <li>@Html.ActionLink("Cerulean", "ChangeTheme", "Home", new { theme = "~/Content/cerulean-theme" }, null)</li>
+                            <li>@Html.ActionLink("Journal", "ChangeTheme", "Home", new { theme = "~/Content/journal-theme" }, null)</li>
+                            <li>@Html.ActionLink("Green", "ChangeTheme", "Home", new { theme = "~/Content/green-theme" }, null)</li>
+                            <li>@Html.ActionLink("Orange", "ChangeTheme", "Home", new { theme = "~/Content/orange-theme" }, null)</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Login", "Login", "Authentication")</li>
+                    <li>@Html.ActionLink("Register", "Register", "Authentication")</li>
+                    @RenderSection("styles", false)
+                </ul>
             </div>
-            @{
-                var sessionData = (SportNutritionPlanModel)Session["UserData"];
-            }
+        }
+        else if (sessionData.User.RoleId == 1)
+        {
+            //User
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Theme
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Default", "ChangeTheme", "Sport", new { theme = "~/Content/default-theme" }, null)</li>
+                            <li>@Html.ActionLink("Cerulean", "ChangeTheme", "Sport", new { theme = "~/Content/cerulean-theme" }, null)</li>
+                            <li>@Html.ActionLink("Journal", "ChangeTheme", "Sport", new { theme = "~/Content/journal-theme" }, null)</li>
+                            <li>@Html.ActionLink("Green", "ChangeTheme", "Sport", new { theme = "~/Content/green-theme" }, null)</li>
+                            <li>@Html.ActionLink("Orange", "ChangeTheme", "Sport", new { theme = "~/Content/orange-theme" }, null)</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink("Edit Profile", "UserProfile", "Administration",
+                            new { id = sessionData.User.Id, pass = sessionData.User.Password }, null)
+                    </li>
+                    <li>@Html.ActionLink("Statistics", "Statistics", "Sport")</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Administration")</li>
+                    @RenderSection("styles", false)
+                </ul>
+            </div>
+        }
+        else if (sessionData.User.RoleId == 2)
+        {
+            //Admin
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Theme
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Default", "ChangeTheme", "Administration", new { theme = "~/Content/default-theme" }, null)</li>
+                            <li>@Html.ActionLink("Cerulean", "ChangeTheme", "Administration", new { theme = "~/Content/cerulean-theme" }, null)</li>
+                            <li>@Html.ActionLink("Journal", "ChangeTheme", "Administration", new { theme = "~/Content/journal-theme" }, null)</li>
+                            <li>@Html.ActionLink("Green", "ChangeTheme", "Administration", new { theme = "~/Content/green-theme" }, null)</li>
+                            <li>@Html.ActionLink("Orange", "ChangeTheme", "Administration", new { theme = "~/Content/orange-theme" }, null)</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Admin panel", "AdminPanel", "Administration")</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Administration")</li>
+                    @RenderSection("styles", false)
+                </ul>
+            </div>
+        }
 
-            @if (sessionData == null)
-            {
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Login", "Login", "Authentication")</li>
-                        <li>@Html.ActionLink("Register", "Register", "Authentication")</li>
-                        @RenderSection("styles", false)
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            }
-            else if (sessionData.User.RoleId == 1)
-            {
-                //User
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            @Html.ActionLink("Edit Profile", "UserProfile", "Administration",
-                                new { id = sessionData.User.Id, pass = sessionData.User.Password }, null)
-                        </li>
-                        <li>@Html.ActionLink("Statistics", "Statistics", "Sport")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Administration")</li>
-                        @RenderSection("styles", false)
-                    </ul>
-                </div>
-            }
-            else if (sessionData.User.RoleId == 2)
-            {
-                //Admin
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Admin panel", "AdminPanel", "Administration")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Administration")</li>
-                        @RenderSection("styles", false)
-                    </ul>
-                </div>
-            }
-
-        </div><!-- /.container-fluid -->
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
     </div>
+</nav>
+<div class="container body-content">
+    @RenderBody()
+</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/plan.js")
-    @Scripts.Render("~/bundles/angular")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/Scripts/plan.js")
+@Scripts.Render("~/bundles/angular")
+@Scripts.Render("~/bundles/modernizr")
+@RenderSection("scripts", required: false)
 </body>
 </html>

@@ -9,6 +9,13 @@ namespace SciFit.Controllers
 {
     public class SportController : Controller
     {
+        public ActionResult ChangeTheme(string theme)
+        {
+            Session["CustomTheme"] = theme;
+
+            return RedirectToAction("Plan", "Sport");
+        }
+
         public ActionResult SportPlan(UserModelPartialView userModel)
         {
             if (!ModelState.IsValid)

@@ -7,7 +7,18 @@ namespace SciFit.Controllers
     {
         public ActionResult Index()
         {
+            if (Session["CustomTheme"] == null)
+            {
+                Session["CustomTheme"] = "~/Content/default-theme";
+            }
             return View();
+        }
+
+        public ActionResult ChangeTheme(string theme)
+        {
+            Session["CustomTheme"] = theme;
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult About()

@@ -36,6 +36,13 @@ namespace SciFit.Controllers
             return View(users);
         }
 
+        public ActionResult ChangeTheme(string theme)
+        {
+            Session["CustomTheme"] = theme;
+
+            return RedirectToAction("AdminPanel", "Administration");
+        }
+
         public ActionResult AdministratePlans()
         {
             var plans = new AdministrationModel();
