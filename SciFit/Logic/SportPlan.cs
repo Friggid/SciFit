@@ -7,15 +7,15 @@ namespace SciFit.Logic
 {
     public class SportPlan
     {
-        public List<SportPlanModel> GetSportPlans()
+        public SportPlanModel GetAllSportPlansById(int userId)
         {
             using (var httpClient = new HttpClient())
             {
-                var response = httpClient.GetAsync("http://localhost:64483/api/Sport/").Result;
+                var response = httpClient.GetAsync("http://localhost:64483/api/Sport/" + userId + "?var=" + null).Result;
 
                 var json = response.Content.ReadAsStringAsync().Result;
 
-                var result = JsonConvert.DeserializeObject<List<SportPlanModel>>(json);
+                var result = JsonConvert.DeserializeObject<SportPlanModel>(json);
 
                 return result;
             }

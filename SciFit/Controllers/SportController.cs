@@ -78,10 +78,26 @@ namespace SciFit.Controllers
                     User = loggedInData
                 };
 
+                var allDone = sportPlan.GetAllSportPlansById(userData.User.Id);
+                var createNew = true;
+                foreach (var item in allDone.Sport)
+                {
+                    if (item.Done == 0)
+                    {
+                        createNew = false;
+                    }
+                }
+                if (createNew)
+                {
+                    sportPlan.DeleteSportPlan(userData.User.Id);
+                    userData.SportPlan = sportPlan.PostSportPlan(loggedInData.Id, 1).Sport;
+                }
+
                 if (userData.SportPlan.Count <= 0)
                 {
-                    userData.SportPlan = sportPlan.PostSportPlan(loggedInData.Id, 1).Sport;// temp fix lvl nr 1
+                    //Textas kazkoks kai tuscia
                 }
+
                 ViewBag.Id = userData.User.Id;
 
                 Session["UserData"] = userData;
@@ -116,9 +132,7 @@ namespace SciFit.Controllers
             };
             if (userData.SportPlan.Count <= 0)
             {
-                sportPlan.DeleteSportPlan(model.User.Id);
-                userData.SportPlan = sportPlan.PostSportPlan(model.User.Id, lvl + 1).Sport;
-
+                //Textas kazkoks kai tuscia
             }
             Session["UserData"] = userData;
             var statisticsModel = statisticLogic.GetStatisticsById(userData.User.Id);
@@ -161,8 +175,10 @@ namespace SciFit.Controllers
         }
         public JsonResult GetPlans()
         {
+            var sportPlanLogic = new SportPlan();
             var userData = (SportNutritionPlanModel)Session["UserData"];
-            return new JsonResult { Data = userData.SportPlan, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            var data = sportPlanLogic.GetAllSportPlansById(userData.User.Id);
+            return new JsonResult { Data = data.Sport, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
 }
