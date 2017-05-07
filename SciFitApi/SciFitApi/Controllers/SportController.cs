@@ -15,9 +15,24 @@ namespace SciFitApi.Controllers
         private readonly SciFitApiContext _db = new SciFitApiContext();
 
         //GET api/SportCollection
-        public IQueryable<SportPlanModel> GetSport()
+        [ResponseType(typeof(SportPlanModel))]
+        public IHttpActionResult GetSport(int id, int? var)
         {
-            return _db.SportCollection;
+
+            var sportPlan = (from x in _db.SportCollection
+                             where x.UserId == id
+                             select x).SingleOrDefault();
+
+            if (sportPlan == null)
+            {
+                return NotFound();
+            }
+            var allSports = (from x in _db.Sport
+                             where x.SportPlanId == sportPlan.Id
+                             select x).ToList();
+
+            sportPlan.Sport = allSports;
+            return Ok(sportPlan);
         }
 
         //GET api/SportCollection/5
@@ -33,10 +48,11 @@ namespace SciFitApi.Controllers
                 return NotFound();
             }
             var allSports = (from x in _db.Sport
-                             where x.SportPlanId == sportPlan.Id && x.Done == 0
+                             where x.SportPlanId == sportPlan.Id && x.Done == 0 && x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now
                              select x).ToList();
 
             sportPlan.Sport = allSports;
+
             return Ok(sportPlan);
         }
 
@@ -46,7 +62,6 @@ namespace SciFitApi.Controllers
             var sportPlan = (from x in _db.SportCollection
                             where x.UserId == id
                             select x).SingleOrDefault();
-            //_db.SportCollection.Find(id);
             if (sportPlan == null)
             {
                 return BadRequest();
@@ -65,8 +80,8 @@ namespace SciFitApi.Controllers
             _db.SaveChanges();
 
             var allSports = (from x in _db.Sport
-                            where x.SportPlanId == sportPlan.Id && x.Done == 0
-                            select x).ToList();
+                             where x.SportPlanId == sportPlan.Id && x.Done == 0 && x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now
+                             select x).ToList();
 
             sportPlan.Sport = allSports;
 
@@ -88,7 +103,7 @@ namespace SciFitApi.Controllers
             List<SportTemplateModel> sportPlan;
             List<SportModel> sportMapped;
             List<SportModel> fullList = new List<SportModel>();
-            DateTime start = DateTime.Now;
+            DateTime start = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             if (highestLvl != null)
             {
                 for(int i = 1; i < highestLvl+1; i++)
@@ -103,31 +118,10 @@ namespace SciFitApi.Controllers
                         item.EndDate = start.AddDays(1);
                         fullList.Add(item);
                     }
-                    start.AddDays(1);
+                    start = start.AddDays(1);
                 }
             }
-
-            //change
-            //sportPlan = (from x in _db.SportTemplate
-            //                 where x.Level == level
-            //                 select x).ToList();
-
-            //if (sportPlan.Count == 0)
-            //{
-            //    sportPlan = (from x in _db.SportTemplate
-            //                 where x.Level == level-1
-            //                 select x).ToList();
-            //}
-
-
-            //sportMapped = Mapper.Map<List<SportModel>>(sportPlan);
-
-            //foreach (var item in sportMapped)
-            //{
-            //    item.StartDate = DateTime.Now;
-            //    item.EndDate = DateTime.Now.AddDays(1);
-            //}
-
+            
             var sportCollection = new SportPlanModel
             {
                 UserId = id,
@@ -138,6 +132,11 @@ namespace SciFitApi.Controllers
 
             _db.SaveChanges();
 
+            var list = (from x in fullList
+                        where x.StartDate <= DateTime.Now && x.EndDate > DateTime.Now
+                        select x).ToList();
+
+            sportCollection.Sport = list;
             return Ok(sportCollection);
         }
 
