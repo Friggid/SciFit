@@ -25,7 +25,19 @@ namespace SciFit
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/Plan.css",
+                      "~/Content/fullcalendar.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular/moment.js",
+                      "~/Scripts/angular/jquery-1.11.3.js",//? leave or not
+                      "~/Scripts/angular/angular.js",
+                      "~/Scripts/angular/calendar.js",
+                      "~/Scripts/angular/fullcalendar.js",
+                      "~/Scripts/angular/gcal.js",
+                      "~/Scripts/angular/myApp.js"
+            ));
         }
     }
 }

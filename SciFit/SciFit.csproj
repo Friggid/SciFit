@@ -192,6 +192,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Authentication.css" />
+    <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Plan.css" />
     <Content Include="favicon.ico" />
@@ -209,6 +210,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\calendar.js" />
+    <Content Include="Scripts\angular\fullcalendar.js" />
+    <Content Include="Scripts\angular\gcal.js" />
+    <Content Include="Scripts\angular\jquery-1.11.3.js" />
+    <Content Include="Scripts\angular\moment.js" />
+    <Content Include="Scripts\angular\myApp.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />

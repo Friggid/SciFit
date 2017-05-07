@@ -1,4 +1,6 @@
-﻿namespace SciFitApi.Models
+﻿using System;
+
+namespace SciFitApi.Models
 {
     public class SportTemplateModel
     {
@@ -17,5 +19,9 @@
         public bool Done { get; set; }
 
         public byte[] ImgContent { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
     }
 }

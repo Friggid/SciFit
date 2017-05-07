@@ -27,6 +27,10 @@ namespace SciFitApi.Models
 
         public byte[] ImgContent { get; set; }
 
+        public DateTime StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
         [JsonIgnore]
         [IgnoreDataMember]
         public virtual SportPlanModel SportPlan { get; set; }

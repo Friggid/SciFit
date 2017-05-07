@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Web;
+using System;
 
 namespace SciFit.Models
 {
@@ -28,5 +29,9 @@ namespace SciFit.Models
         public bool Done { get; set; }
 
         public byte[] ImgContent { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
     }
 }

@@ -152,5 +152,10 @@ namespace SciFit.Controllers
             return File(content, "image/jpg");
 
         }
+        public JsonResult GetPlans()
+        {
+            var userData = (SportNutritionPlanModel)Session["UserData"];
+            return new JsonResult { Data = userData.SportPlan, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
     }
 }
