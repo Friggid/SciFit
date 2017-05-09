@@ -1,5 +1,5 @@
 ﻿var app = angular.module('myApp', ['ui.calendar']);
-app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', function ($scope, $http, uiCalendarConfig) {
+app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$timeout', function ($scope, $http, uiCalendarConfig, $timeout) {
 
     $scope.SelectedEvent = null;
     var isFirstTime = true;
@@ -27,27 +27,28 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', functio
     });
 
     //configure calendar
-    $scope.uiConfig = {
-        calendar: {
-            height: 450,
-            editable: true,
-            displayEventTime: false,
-            header: {
-                left: 'month basicWeek basicDay',
-                center: 'title',
-                right: 'today prev,next'
-            },
-            eventClick: function (event) {
-                $scope.SelectedEvent = event;
-            },
-            eventAfterAllRender: function () {
-                if (isFirstTime) {//$scope.events.length > 0 && 
-                    //Focus first event
-                    uiCalendarConfig.calendars.myCalendar.fullCalendar('gotoDate', $scope.events[0].start);
-                    isFirstTime = false;
+    $timeout(function() {
+        $scope.uiConfig = {
+            calendar: {
+                height: 450,
+                editable: true,
+                displayEventTime: false,
+                header: {
+                    left: 'month basicWeek basicDay',
+                    center: 'title',
+                    right: 'today prev,next'
+                },
+                eventClick: function (event) {
+                    $scope.SelectedEvent = event;
+                },
+                eventAfterAllRender: function () {
+                    if (isFirstTime) {//$scope.events.length > 0 && 
+                        //Focus first event
+                        uiCalendarConfig.calendars.myCalendar.fullCalendar('gotoDate', $scope.events[0].start);
+                        isFirstTime = false;
+                    }
                 }
             }
-        }
-    };
-
+        };
+    }, 2000);
 }])
