@@ -40,6 +40,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab1">
                         <div class="row">
+                            @{var id = 0;}
                             @foreach (var item in Model.SportPlan)
                             {
                                 if (Model.SportPlan.Count > 2)
@@ -48,7 +49,7 @@
                                         <div class="thumbnail">
                                             @if (item.ImgContent != null && item.ImgContent.Length > 0)
                                             {
-                                                <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
+                                                <img src='@Url.Action("LoadImg", "Sport", new {id = item.Id})'>
                                             }
                                             else
                                             {
@@ -67,11 +68,11 @@
 
                                                 <div class="row" style="display: flex; justify-content: center;">
                                                     <div class="col-md-3">
-                                                        <button id="myBtn" class="btn btn-info">Instructions</button>
+                                                        <button button-id="@id" id="myBtn" class="myBtn btn btn-info">Instructions</button>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
-                                                            @Html.ActionLink("Completed", "UpdatePlan", "Sport", new { sportId = item.Id, lvl = item.Level },
+                                                            @Html.ActionLink("Completed", "UpdatePlan", "Sport", new {sportId = item.Id, lvl = item.Level},
                                                                 new
                                                                 {
                                                                     @class = "btn btn-info"
@@ -81,11 +82,11 @@
                                                 </div>
 
                                                 <!-- The Modal -->
-                                                <div id="myModal" class="modal col-md-12">
+                                                <div modal-id="@id" id="myModal_@id" class="modal col-md-12">
                                                     <!-- Modal content -->
                                                     <div class="modal-content" style="min-height: 300px; min-width: 350px;">
-                                                        <span class="close">&times;</span>
-                                                        <iframe style="margin: 0; width: 100%; min-height: 300px" src="//@item.Video" frameborder="0" allowfullscreen></iframe>
+                                                        <span id="span_@id" class="close">&times;</span>
+                                                        <iframe id="iframe_@id" style="margin: 0; width: 100%; min-height: 300px" src="//@item.Video?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,7 +99,7 @@
                                         <div class="thumbnail">
                                             @if (item.ImgContent != null && item.ImgContent.Length > 0)
                                             {
-                                                <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
+                                                <img src='@Url.Action("LoadImg", "Sport", new {id = item.Id})'>
                                             }
                                             else
                                             {
@@ -117,7 +118,7 @@
 
                                                 <div class="row" style="display: flex; justify-content: center;">
                                                     <div class="col-md-3">
-                                                        <button id="myBtn" class="btn btn-info">Instructions</button>
+                                                        <button button-id="@id" id="myBtn" class="myBtn btn btn-info">Instructions</button>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
@@ -131,11 +132,11 @@
                                                 </div>
 
                                                 <!-- The Modal -->
-                                                <div id="myModal" class="modal col-md-12">
+                                                <div modal-id="@id" id="myModal_@id" class="modal col-md-12">
                                                     <!-- Modal content -->
                                                     <div class="modal-content" style="min-height: 300px; min-width: 350px;">
-                                                        <span class="close">&times;</span>
-                                                        <iframe style="margin: 0; width: 100%; min-height: 300px" src="//@item.Video" frameborder="0" allowfullscreen></iframe>
+                                                        <span id="span_@id" class="close">&times;</span>
+                                                        <iframe id="iframe_@id" style="margin: 0; width: 100%; min-height: 300px" src="//@item.Video?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                                                     </div>
                                                 </div>
                                             </div>
@@ -148,7 +149,7 @@
                                         <div class="thumbnail">
                                             @if (item.ImgContent != null && item.ImgContent.Length > 0)
                                             {
-                                                <img src='@Url.Action("LoadImg", "Sport", new { id = item.Id})'>
+                                                <img src='@Url.Action("LoadImg", "Sport", new {id = item.Id})'>
                                             }
                                             else
                                             {
@@ -164,10 +165,10 @@
                                                 <div>
                                                     <p>Repetitions: @item.Reps</p>
                                                 </div>
-                                                
+
                                                 <div class="row" style="display: flex; justify-content: center;">
                                                     <div class="col-md-3">
-                                                        <button id="myBtn" class="btn btn-info">Instructions</button>
+                                                        <button button-id="@id" id="myBtn" class="myBtn btn btn-info">Instructions</button>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div>
@@ -181,18 +182,19 @@
                                                 </div>
 
                                                 <!-- The Modal -->
-                                                <div id="myModal" class="modal col-md-12">
+                                                <div modal-id="@id" id="myModal_@id" class="modal col-md-12">
                                                     <!-- Modal content -->
                                                     <div class="modal-content" style="min-height: 300px; min-width: 350px;">
-                                                        <span class="close">&times;</span>
-                                                        <iframe style="margin: 0; width: 100%; min-height: 300px" src="//@item.Video" frameborder="0" allowfullscreen></iframe>
+                                                        <span id="span_@id" class="close">&times;</span>
+                                                        <iframe id="iframe_@id" style="margin: 0; width: 100%; min-height: 300px" src="//@item.Video?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                }
+                                id++;
                             }
-                        }
                         </div>
                     </div>
                     <div class="tab-pane fade in" id="tab2">
@@ -239,33 +241,28 @@
 @section Scripts
 {
     <script>
-        // Get the modal
-        var modal = document.getElementById('myModal');
+        $('.myBtn').click(function () {
+            var id = $(this).attr('button-id');
+            var modal = document.getElementById('myModal_' + id);
+            var span = document.getElementById('span_' + id);
+            var iframe = document.getElementById('iframe_' + id);
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on the button, open the modal
-        btn.onclick = function () {
             modal.style.display = "flex";
             modal.style.justifyContent = "center";
             modal.style.alignItems = "center";
-        }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target === modal) {
+            span.onclick = function () {
                 modal.style.display = "none";
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
             }
-        }
+
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+            }
+        });
     </script>
 }
 
