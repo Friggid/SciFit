@@ -50,5 +50,5 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$timeo
                 }
             }
         };
-    }, 2000);
+    }, 3000);
 }])

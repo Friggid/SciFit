@@ -121,9 +121,26 @@ namespace SciFit.Controllers
             return View();
         }
 
-        public ActionResult AdministratePlansCreate(PlanTemplateModel model)
+        public ActionResult AdministratePlansCreate(PlanTemplateModel model, HttpPostedFileBase file)
         {
+            if (file != null)
+            {
+                if (HasImageExtension(file.FileName))
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        using (var binaryReader = new BinaryReader(file.InputStream))
+                        {
+                            byte[] imageData = null;
+                            imageData = binaryReader.ReadBytes(file.ContentLength);
+                            model.ImgContent = imageData;
+                        }
+                    }
+                }
+            }
+
             var planTemplateLogic = new PlanTemplate();
+            model.StartDate = DateTime.Now;
             var savedPlan = planTemplateLogic.PostPlanTemplate(model);
 
             if (savedPlan != null)

@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3 text-center" style="float: none; margin: auto">
-            @using (Html.BeginForm("AdministratePlansCreate", "Administration"))
+            @using (Html.BeginForm("AdministratePlansCreate", "Administration", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <h4>Create excercise</h4>
                 <hr />
@@ -38,6 +38,8 @@
                         type = "text",
                         style = "margin:auto; text-align:center"
                     })
+
+                <input type="file" name="file" class="form-control input-sm" style="margin:auto; text-align:center" />
                 <hr />
 
                 @Html.ValidationMessageFor(m => m.Instructions, "", new { @class = "text-danger" })
