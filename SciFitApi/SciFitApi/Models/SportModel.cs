@@ -31,6 +31,8 @@ namespace SciFitApi.Models
 
         public DateTime? EndDate { get; set; }
 
+        public string Video { get; set; }
+
         [JsonIgnore]
         [IgnoreDataMember]
         public virtual SportPlanModel SportPlan { get; set; }

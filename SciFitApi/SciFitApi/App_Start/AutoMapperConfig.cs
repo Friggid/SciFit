@@ -26,7 +26,9 @@ namespace SciFitApi.App_Start
                 .ForMember
                 (dest => dest.StartDate, opts => opts.MapFrom(src => src.StartDate))
                 .ForMember
-                (dest => dest.EndDate, opts => opts.MapFrom(src => src.EndDate));
+                (dest => dest.EndDate, opts => opts.MapFrom(src => src.EndDate))
+                .ForMember
+                (dest => dest.Video, opts => opts.MapFrom(src => src.Video));
             });
 
         }

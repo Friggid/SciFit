@@ -52,6 +52,16 @@
                         style = "margin:auto; text-align:center"
                     })
                 <hr />
+                @Html.ValidationMessageFor(m => m.Video, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(m => m.Video,
+                    new
+                    {
+                        @class = "form-control input-sm",
+                        placeholder = "Image",
+                        type = "text",
+                        style = "margin:auto; text-align:center"
+                    })
+                <hr />
                 @Html.ValidationMessageFor(m => m.Level, "", new { @class = "text-danger" })
                 @Html.TextBoxFor(m => m.Level,
                     new

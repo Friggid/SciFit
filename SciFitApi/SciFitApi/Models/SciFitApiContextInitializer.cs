@@ -65,7 +65,8 @@ namespace SciFitApi.Models
                         Instructions = "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių.",
                         Level = 1,
                         Done = false,
-                        StartDate = DateTime.Now
+                        StartDate = DateTime.Now,
+                        Video = "www.youtube.com/embed/AGg3u03JPfk"
                     },
                     new SportTemplateModel
                     {
@@ -75,7 +76,8 @@ namespace SciFitApi.Models
                         Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite.",
                         Level = 1,
                         Done = false,
-                        StartDate = DateTime.Now
+                        StartDate = DateTime.Now,
+                        Video = "www.youtube.com/embed/AGg3u03JPfk"
                     },
                     new SportTemplateModel
                     {
@@ -86,7 +88,8 @@ namespace SciFitApi.Models
                             "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių.",
                         Level = 2,
                         Done = false,
-                        StartDate = DateTime.Now
+                        StartDate = DateTime.Now,
+                        Video = "www.youtube.com/embed/AGg3u03JPfk"
                     },
                     new SportTemplateModel
                     {
@@ -96,7 +99,8 @@ namespace SciFitApi.Models
                         Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite.",
                         Level = 2,
                         Done = false,
-                        StartDate = DateTime.Now
+                        StartDate = DateTime.Now,
+                        Video = "www.youtube.com/embed/AGg3u03JPfk"
                     },
                     new SportTemplateModel
                     {
@@ -106,7 +110,8 @@ namespace SciFitApi.Models
                         Instructions = "Atsigulkite ant nugaros, sulenkite kelius, padėkite rankas už galvos ir prisitraukite prie sulenktų kelių.",
                         Level = 3,
                         Done = false,
-                        StartDate = DateTime.Now
+                        StartDate = DateTime.Now,
+                        Video = "www.youtube.com/embed/AGg3u03JPfk"
                     },
                     new SportTemplateModel
                     {
@@ -116,7 +121,8 @@ namespace SciFitApi.Models
                         Instructions = "Atsistokite tiesia nugara, ištieskite rankas ir pritūpkite.",
                         Level = 3,
                         Done = false,
-                        StartDate = DateTime.Now
+                        StartDate = DateTime.Now,
+                        Video = "www.youtube.com/embed/AGg3u03JPfk"
                     }
             };
             sportPlan.ForEach(x => context.SportTemplate.Add(x));
