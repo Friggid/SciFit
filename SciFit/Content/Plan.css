@@ -120,3 +120,17 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.customDone,
+.customDone div,
+.customDone span {
+    background-color: green; /* background color */
+    border-color: green;     /* border color */
+}
+
+.customNotDone,
+.customNotDone div,
+.customNotDone span {
+    background-color: red; /* background color */
+    border-color: red;     /* border color */
+}

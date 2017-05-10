@@ -21,9 +21,17 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$timeo
                 start: new Date(parseInt(value.StartDate.substr(6))),
                 end: new Date(parseInt(value.EndDate.substr(6))),
                 allDay: false,
-                stick: true
+                stick: true,
+                done: value.Done
             });
         });
+
+        for (var i = 0; i < $scope.events.length; i++) {
+
+            if ($scope.events[i].done) {
+                $scope.events[i].className = 'customDone';
+            }
+        }
     });
 
     //configure calendar
@@ -44,6 +52,7 @@ app.controller('myNgController', ['$scope', '$http', 'uiCalendarConfig', '$timeo
                 eventAfterAllRender: function () {
                     if (isFirstTime) {//$scope.events.length > 0 && 
                         //Focus first event
+                       
                         uiCalendarConfig.calendars.myCalendar.fullCalendar('gotoDate', $scope.events[0].start);
                         isFirstTime = false;
                     }

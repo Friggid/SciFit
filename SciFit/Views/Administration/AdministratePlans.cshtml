@@ -55,3 +55,14 @@
         </div>
     </div>
 </div>
+@section Scripts
+{
+    <script>
+        $(".delete").click(function () {
+            var txt;
+            if (confirm("Do you really want to proceed with deletion?") == false) {
+                return false;
+            }
+        });
+    </script>
+}
