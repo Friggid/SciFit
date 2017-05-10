@@ -54,6 +54,12 @@
                     <div class="tab-pane fade in active" id="tab1">
                         <div class="row">
                             @{var id = 0;}
+                            @if (Model.SportPlan.Count == 0)
+                            {
+                                <div class="col-md-12 text-center">
+                                    <h3 class="disabled">Jūs šiandien nebeturite pratimų</h3>
+                                </div>
+                            }
                             @foreach (var item in Model.SportPlan)
                             {
                                 if (Model.SportPlan.Count > 2)
@@ -208,17 +214,17 @@
                         <div class="row">
                             @foreach (var item in Model.NutritionPlan)
                             {
-                            <div class="col-sm-6 col-md-4" style="text-align: center">
-                                <div class="thumbnail">
-                                    <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
-                                    <div class="caption">
-                                        <h3>@item.Name</h3>
-                                        <p>@item.Calories kCal</p>
-                                        <p>@item.Weight</p>
-                                        <p>@item.Price</p>
+                                <div class="col-sm-6 col-md-4" style="text-align: center">
+                                    <div class="thumbnail">
+                                        <img src="@item.Image" alt="..." style="height: 200px; width: 200px">
+                                        <div class="caption">
+                                            <h3>@item.Name</h3>
+                                            <p>@item.Calories kCal</p>
+                                            <p>@item.Weight</p>
+                                            <p>@item.Price</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             }
                         </div>
                     </div>
